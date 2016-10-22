@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		F5F7C3BB1DBBC59D00BC116E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */; };
-		F5F7C3BD1DBBC59D00BC116E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BC1DBBC59D00BC116E /* ViewController.swift */; };
+		F5F7C3BD1DBBC59D00BC116E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */; };
 		F5F7C3C01DBBC59D00BC116E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3BE1DBBC59D00BC116E /* Main.storyboard */; };
 		F5F7C3C31DBBC59D00BC116E /* ArretoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3C11DBBC59D00BC116E /* ArretoApp.xcdatamodeld */; };
 		F5F7C3C51DBBC59D00BC116E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3C41DBBC59D00BC116E /* Assets.xcassets */; };
 		F5F7C3C81DBBC59D00BC116E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3C61DBBC59D00BC116E /* LaunchScreen.storyboard */; };
+		F5F7C3D01DBBD0B900BC116E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3CF1DBBD0B900BC116E /* CoreDataHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F5F7C3B71DBBC59D00BC116E /* ArretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F5F7C3BC1DBBC59D00BC116E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		F5F7C3BF1DBBC59D00BC116E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F5F7C3C21DBBC59D00BC116E /* ArretoApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArretoApp.xcdatamodel; sourceTree = "<group>"; };
 		F5F7C3C41DBBC59D00BC116E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5F7C3C71DBBC59D00BC116E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5F7C3C91DBBC59D00BC116E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5F7C3CF1DBBD0B900BC116E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,48 @@
 		F5F7C3B91DBBC59D00BC116E /* ArretoApp */ = {
 			isa = PBXGroup;
 			children = (
-				F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */,
-				F5F7C3BC1DBBC59D00BC116E /* ViewController.swift */,
-				F5F7C3BE1DBBC59D00BC116E /* Main.storyboard */,
-				F5F7C3C41DBBC59D00BC116E /* Assets.xcassets */,
-				F5F7C3C61DBBC59D00BC116E /* LaunchScreen.storyboard */,
-				F5F7C3C91DBBC59D00BC116E /* Info.plist */,
-				F5F7C3C11DBBC59D00BC116E /* ArretoApp.xcdatamodeld */,
+				F5F7C3D11DBBD21A00BC116E /* controllers */,
+				F5F7C3D41DBBD24D00BC116E /* utils */,
+				F5F7C3D31DBBD24100BC116E /* view */,
+				F5F7C3D21DBBD22700BC116E /* supporting files */,
 			);
 			path = ArretoApp;
+			sourceTree = "<group>";
+		};
+		F5F7C3D11DBBD21A00BC116E /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		F5F7C3D21DBBD22700BC116E /* supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				F5F7C3C11DBBC59D00BC116E /* ArretoApp.xcdatamodeld */,
+				F5F7C3C41DBBC59D00BC116E /* Assets.xcassets */,
+				F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */,
+				F5F7C3C61DBBC59D00BC116E /* LaunchScreen.storyboard */,
+				F5F7C3C91DBBC59D00BC116E /* Info.plist */,
+			);
+			name = "supporting files";
+			sourceTree = "<group>";
+		};
+		F5F7C3D31DBBD24100BC116E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				F5F7C3BE1DBBC59D00BC116E /* Main.storyboard */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		F5F7C3D41DBBD24D00BC116E /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				F5F7C3CF1DBBD0B900BC116E /* CoreDataHelper.swift */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +175,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5F7C3BD1DBBC59D00BC116E /* ViewController.swift in Sources */,
+				F5F7C3BD1DBBC59D00BC116E /* MainVC.swift in Sources */,
 				F5F7C3C31DBBC59D00BC116E /* ArretoApp.xcdatamodeld in Sources */,
+				F5F7C3D01DBBD0B900BC116E /* CoreDataHelper.swift in Sources */,
 				F5F7C3BB1DBBC59D00BC116E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
