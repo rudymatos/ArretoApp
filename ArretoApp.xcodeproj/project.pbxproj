@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F50FE6191DC9944500029A11 /* KeyGeneratorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6181DC9944500029A11 /* KeyGeneratorHelper.swift */; };
+		F50FE61B1DC996E200029A11 /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE61A1DC996E200029A11 /* KeyGenerator.swift */; };
+		F50FE61D1DC9A1A900029A11 /* AddShareBoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE61C1DC9A1A900029A11 /* AddShareBoardVC.swift */; };
+		F50FE61F1DC9B2B900029A11 /* AWOHTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE61E1DC9B2B900029A11 /* AWOHTVC.swift */; };
+		F50FE6211DC9B35900029A11 /* ActionExecuter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6201DC9B35900029A11 /* ActionExecuter.swift */; };
+		F50FE6231DC9B5DD00029A11 /* PlayerInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6221DC9B5DD00029A11 /* PlayerInfoDTO.swift */; };
+		F50FE6251DCE370C00029A11 /* PlayingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6241DCE370C00029A11 /* PlayingTVC.swift */; };
+		F50FE6271DCE38B300029A11 /* AWOHInactiveTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6261DCE38B300029A11 /* AWOHInactiveTVC.swift */; };
+		F50FE6291DCE8DB800029A11 /* PlayingInactiveTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */; };
+		F50FE62B1DCEB53000029A11 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE62A1DCEB53000029A11 /* ColorUtil.swift */; };
+		F58499AB1DBEF1610052B752 /* PlayerNameTCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58499AA1DBEF1610052B752 /* PlayerNameTCV.swift */; };
+		F596422A1DC980B3001FA9A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F59642291DC980B3001FA9A9 /* GoogleService-Info.plist */; };
+		F596422C1DC980DD001FA9A9 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F596422B1DC980DD001FA9A9 /* FirebaseHelper.swift */; };
+		F5CF8A791DBD24B30043E05A /* ArretoExceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8A781DBD24B30043E05A /* ArretoExceptions.swift */; };
+		F5CF8A7C1DBD29AD0043E05A /* EventTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8A7B1DBD29AD0043E05A /* EventTypeEnum.swift */; };
 		F5F7C3BB1DBBC59D00BC116E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */; };
 		F5F7C3BD1DBBC59D00BC116E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */; };
 		F5F7C3C01DBBC59D00BC116E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3BE1DBBC59D00BC116E /* Main.storyboard */; };
@@ -14,9 +29,38 @@
 		F5F7C3C51DBBC59D00BC116E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3C41DBBC59D00BC116E /* Assets.xcassets */; };
 		F5F7C3C81DBBC59D00BC116E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3C61DBBC59D00BC116E /* LaunchScreen.storyboard */; };
 		F5F7C3D01DBBD0B900BC116E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3CF1DBBD0B900BC116E /* CoreDataHelper.swift */; };
+		F5F7C3DC1DBBD39A00BC116E /* Board+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3D61DBBD39A00BC116E /* Board+CoreDataClass.swift */; };
+		F5F7C3DD1DBBD39A00BC116E /* Board+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3D71DBBD39A00BC116E /* Board+CoreDataProperties.swift */; };
+		F5F7C3DE1DBBD39A00BC116E /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3D81DBBD39A00BC116E /* Player+CoreDataClass.swift */; };
+		F5F7C3DF1DBBD39A00BC116E /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3D91DBBD39A00BC116E /* Player+CoreDataProperties.swift */; };
+		F5F7C3E01DBBD39A00BC116E /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3DA1DBBD39A00BC116E /* Event+CoreDataClass.swift */; };
+		F5F7C3E11DBBD39A00BC116E /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3DB1DBBD39A00BC116E /* Event+CoreDataProperties.swift */; };
+		F5F7C3E41DBBDBC700BC116E /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3E31DBBDBC700BC116E /* GameType.swift */; };
+		F5F7C3E81DBBDC2700BC116E /* GameImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3E71DBBDC2700BC116E /* GameImpl.swift */; };
+		F5F7C3EA1DBBE04A00BC116E /* AddPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3E91DBBE04A00BC116E /* AddPlayerVC.swift */; };
+		FC57CFBD23CB65008BAF43AC /* Pods_ArretoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF1D26FC9076446C912D807 /* Pods_ArretoApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23452EE743DFE89CA0F8A834 /* Pods-ArretoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArretoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArretoApp/Pods-ArretoApp.release.xcconfig"; sourceTree = "<group>"; };
+		5AF1D26FC9076446C912D807 /* Pods_ArretoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArretoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF1968CD7199A1BA10DC38C2 /* Pods-ArretoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArretoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArretoApp/Pods-ArretoApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F50FE6181DC9944500029A11 /* KeyGeneratorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGeneratorHelper.swift; sourceTree = "<group>"; };
+		F50FE61A1DC996E200029A11 /* KeyGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGenerator.swift; sourceTree = "<group>"; };
+		F50FE61C1DC9A1A900029A11 /* AddShareBoardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShareBoardVC.swift; sourceTree = "<group>"; };
+		F50FE61E1DC9B2B900029A11 /* AWOHTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWOHTVC.swift; sourceTree = "<group>"; };
+		F50FE6201DC9B35900029A11 /* ActionExecuter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionExecuter.swift; sourceTree = "<group>"; };
+		F50FE6221DC9B5DD00029A11 /* PlayerInfoDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoDTO.swift; sourceTree = "<group>"; };
+		F50FE6241DCE370C00029A11 /* PlayingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingTVC.swift; sourceTree = "<group>"; };
+		F50FE6261DCE38B300029A11 /* AWOHInactiveTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWOHInactiveTVC.swift; sourceTree = "<group>"; };
+		F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingInactiveTVC.swift; sourceTree = "<group>"; };
+		F50FE62A1DCEB53000029A11 /* ColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
+		F58499AA1DBEF1610052B752 /* PlayerNameTCV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNameTCV.swift; sourceTree = "<group>"; };
+		F58499AC1DC4FBC00052B752 /* ArretoApp v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ArretoApp v1.2.xcdatamodel"; sourceTree = "<group>"; };
+		F59642291DC980B3001FA9A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F596422B1DC980DD001FA9A9 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
+		F5CF8A781DBD24B30043E05A /* ArretoExceptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArretoExceptions.swift; sourceTree = "<group>"; };
+		F5CF8A7B1DBD29AD0043E05A /* EventTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTypeEnum.swift; sourceTree = "<group>"; };
 		F5F7C3B71DBBC59D00BC116E /* ArretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -26,6 +70,15 @@
 		F5F7C3C71DBBC59D00BC116E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5F7C3C91DBBC59D00BC116E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5F7C3CF1DBBD0B900BC116E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		F5F7C3D61DBBD39A00BC116E /* Board+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Board+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5F7C3D71DBBD39A00BC116E /* Board+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Board+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5F7C3D81DBBD39A00BC116E /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5F7C3D91DBBD39A00BC116E /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5F7C3DA1DBBD39A00BC116E /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5F7C3DB1DBBD39A00BC116E /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5F7C3E31DBBDBC700BC116E /* GameType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
+		F5F7C3E71DBBDC2700BC116E /* GameImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameImpl.swift; sourceTree = "<group>"; };
+		F5F7C3E91DBBE04A00BC116E /* AddPlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlayerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +86,65 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC57CFBD23CB65008BAF43AC /* Pods_ArretoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DA1AAC09CC490F1584E1362 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF1968CD7199A1BA10DC38C2 /* Pods-ArretoApp.debug.xcconfig */,
+				23452EE743DFE89CA0F8A834 /* Pods-ArretoApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F2AC82C68CCC86A2CEEF357A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5AF1D26FC9076446C912D807 /* Pods_ArretoApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F58499A91DBEF14A0052B752 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				F50FE6261DCE38B300029A11 /* AWOHInactiveTVC.swift */,
+				F58499AA1DBEF1610052B752 /* PlayerNameTCV.swift */,
+				F50FE61E1DC9B2B900029A11 /* AWOHTVC.swift */,
+				F50FE6241DCE370C00029A11 /* PlayingTVC.swift */,
+				F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		F5CF8A7A1DBD29970043E05A /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				F5CF8A7B1DBD29AD0043E05A /* EventTypeEnum.swift */,
+			);
+			name = enums;
+			sourceTree = "<group>";
+		};
+		F5EE39CF1DC6CBF200479D98 /* dtos */ = {
+			isa = PBXGroup;
+			children = (
+				F50FE6221DC9B5DD00029A11 /* PlayerInfoDTO.swift */,
+			);
+			name = dtos;
+			sourceTree = "<group>";
+		};
 		F5F7C3AE1DBBC59D00BC116E = {
 			isa = PBXGroup;
 			children = (
 				F5F7C3B91DBBC59D00BC116E /* ArretoApp */,
 				F5F7C3B81DBBC59D00BC116E /* Products */,
+				4DA1AAC09CC490F1584E1362 /* Pods */,
+				F2AC82C68CCC86A2CEEF357A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +159,8 @@
 		F5F7C3B91DBBC59D00BC116E /* ArretoApp */ = {
 			isa = PBXGroup;
 			children = (
+				F5F7C3E61DBBDC1000BC116E /* core */,
+				F5F7C3D51DBBD38300BC116E /* entities */,
 				F5F7C3D11DBBD21A00BC116E /* controllers */,
 				F5F7C3D41DBBD24D00BC116E /* utils */,
 				F5F7C3D31DBBD24100BC116E /* view */,
@@ -69,7 +172,10 @@
 		F5F7C3D11DBBD21A00BC116E /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F58499A91DBEF14A0052B752 /* cells */,
 				F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */,
+				F5F7C3E91DBBE04A00BC116E /* AddPlayerVC.swift */,
+				F50FE61C1DC9A1A900029A11 /* AddShareBoardVC.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -79,6 +185,7 @@
 			children = (
 				F5F7C3C11DBBC59D00BC116E /* ArretoApp.xcdatamodeld */,
 				F5F7C3C41DBBC59D00BC116E /* Assets.xcassets */,
+				F59642291DC980B3001FA9A9 /* GoogleService-Info.plist */,
 				F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */,
 				F5F7C3C61DBBC59D00BC116E /* LaunchScreen.storyboard */,
 				F5F7C3C91DBBC59D00BC116E /* Info.plist */,
@@ -98,8 +205,54 @@
 			isa = PBXGroup;
 			children = (
 				F5F7C3CF1DBBD0B900BC116E /* CoreDataHelper.swift */,
+				F596422B1DC980DD001FA9A9 /* FirebaseHelper.swift */,
+				F50FE6181DC9944500029A11 /* KeyGeneratorHelper.swift */,
+				F50FE62A1DCEB53000029A11 /* ColorUtil.swift */,
 			);
 			name = utils;
+			sourceTree = "<group>";
+		};
+		F5F7C3D51DBBD38300BC116E /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				F5F7C3D61DBBD39A00BC116E /* Board+CoreDataClass.swift */,
+				F5F7C3D71DBBD39A00BC116E /* Board+CoreDataProperties.swift */,
+				F5F7C3D81DBBD39A00BC116E /* Player+CoreDataClass.swift */,
+				F5F7C3D91DBBD39A00BC116E /* Player+CoreDataProperties.swift */,
+				F5F7C3DA1DBBD39A00BC116E /* Event+CoreDataClass.swift */,
+				F5F7C3DB1DBBD39A00BC116E /* Event+CoreDataProperties.swift */,
+			);
+			name = entities;
+			sourceTree = "<group>";
+		};
+		F5F7C3E21DBBDB8E00BC116E /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F5F7C3E31DBBDBC700BC116E /* GameType.swift */,
+				F50FE61A1DC996E200029A11 /* KeyGenerator.swift */,
+				F50FE6201DC9B35900029A11 /* ActionExecuter.swift */,
+			);
+			name = protocols;
+			sourceTree = "<group>";
+		};
+		F5F7C3E51DBBDC0700BC116E /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+				F5F7C3E71DBBDC2700BC116E /* GameImpl.swift */,
+			);
+			name = implementation;
+			sourceTree = "<group>";
+		};
+		F5F7C3E61DBBDC1000BC116E /* core */ = {
+			isa = PBXGroup;
+			children = (
+				F5EE39CF1DC6CBF200479D98 /* dtos */,
+				F5CF8A7A1DBD29970043E05A /* enums */,
+				F5F7C3E21DBBDB8E00BC116E /* protocols */,
+				F5F7C3E51DBBDC0700BC116E /* implementation */,
+				F5CF8A781DBD24B30043E05A /* ArretoExceptions.swift */,
+			);
+			name = core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,9 +262,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5F7C3CC1DBBC59D00BC116E /* Build configuration list for PBXNativeTarget "ArretoApp" */;
 			buildPhases = (
+				8881F99C2AA957321E593731 /* [CP] Check Pods Manifest.lock */,
 				F5F7C3B31DBBC59D00BC116E /* Sources */,
 				F5F7C3B41DBBC59D00BC116E /* Frameworks */,
 				F5F7C3B51DBBC59D00BC116E /* Resources */,
+				3E63259BE1E0F02C2E3E9ED7 /* [CP] Embed Pods Frameworks */,
+				23082C19D830D012FF84F214 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,7 +285,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Bearded Gentleman";
 				TargetAttributes = {
 					F5F7C3B61DBBC59D00BC116E = {
@@ -163,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5F7C3C81DBBC59D00BC116E /* LaunchScreen.storyboard in Resources */,
+				F596422A1DC980B3001FA9A9 /* GoogleService-Info.plist in Resources */,
 				F5F7C3C51DBBC59D00BC116E /* Assets.xcassets in Resources */,
 				F5F7C3C01DBBC59D00BC116E /* Main.storyboard in Resources */,
 			);
@@ -170,15 +327,86 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		23082C19D830D012FF84F214 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArretoApp/Pods-ArretoApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E63259BE1E0F02C2E3E9ED7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArretoApp/Pods-ArretoApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8881F99C2AA957321E593731 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F5F7C3B31DBBC59D00BC116E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5F7C3E11DBBD39A00BC116E /* Event+CoreDataProperties.swift in Sources */,
+				F50FE6211DC9B35900029A11 /* ActionExecuter.swift in Sources */,
+				F5F7C3E81DBBDC2700BC116E /* GameImpl.swift in Sources */,
+				F5CF8A791DBD24B30043E05A /* ArretoExceptions.swift in Sources */,
+				F50FE61F1DC9B2B900029A11 /* AWOHTVC.swift in Sources */,
+				F50FE6271DCE38B300029A11 /* AWOHInactiveTVC.swift in Sources */,
+				F5F7C3DC1DBBD39A00BC116E /* Board+CoreDataClass.swift in Sources */,
+				F50FE6231DC9B5DD00029A11 /* PlayerInfoDTO.swift in Sources */,
+				F596422C1DC980DD001FA9A9 /* FirebaseHelper.swift in Sources */,
+				F50FE61D1DC9A1A900029A11 /* AddShareBoardVC.swift in Sources */,
 				F5F7C3BD1DBBC59D00BC116E /* MainVC.swift in Sources */,
+				F5CF8A7C1DBD29AD0043E05A /* EventTypeEnum.swift in Sources */,
+				F5F7C3DF1DBBD39A00BC116E /* Player+CoreDataProperties.swift in Sources */,
+				F5F7C3DD1DBBD39A00BC116E /* Board+CoreDataProperties.swift in Sources */,
+				F5F7C3E01DBBD39A00BC116E /* Event+CoreDataClass.swift in Sources */,
+				F58499AB1DBEF1610052B752 /* PlayerNameTCV.swift in Sources */,
+				F5F7C3EA1DBBE04A00BC116E /* AddPlayerVC.swift in Sources */,
+				F5F7C3E41DBBDBC700BC116E /* GameType.swift in Sources */,
+				F50FE62B1DCEB53000029A11 /* ColorUtil.swift in Sources */,
+				F50FE6191DC9944500029A11 /* KeyGeneratorHelper.swift in Sources */,
 				F5F7C3C31DBBC59D00BC116E /* ArretoApp.xcdatamodeld in Sources */,
 				F5F7C3D01DBBD0B900BC116E /* CoreDataHelper.swift in Sources */,
+				F50FE6251DCE370C00029A11 /* PlayingTVC.swift in Sources */,
+				F5F7C3DE1DBBD39A00BC116E /* Player+CoreDataClass.swift in Sources */,
 				F5F7C3BB1DBBC59D00BC116E /* AppDelegate.swift in Sources */,
+				F50FE61B1DC996E200029A11 /* KeyGenerator.swift in Sources */,
+				F50FE6291DCE8DB800029A11 /* PlayingInactiveTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +450,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -272,6 +501,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -299,6 +529,7 @@
 		};
 		F5F7C3CD1DBBC59D00BC116E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF1968CD7199A1BA10DC38C2 /* Pods-ArretoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7XYHS53D2W;
@@ -312,6 +543,7 @@
 		};
 		F5F7C3CE1DBBC59D00BC116E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23452EE743DFE89CA0F8A834 /* Pods-ArretoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7XYHS53D2W;
@@ -342,6 +574,7 @@
 				F5F7C3CE1DBBC59D00BC116E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -349,9 +582,10 @@
 		F5F7C3C11DBBC59D00BC116E /* ArretoApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F58499AC1DC4FBC00052B752 /* ArretoApp v1.2.xcdatamodel */,
 				F5F7C3C21DBBC59D00BC116E /* ArretoApp.xcdatamodel */,
 			);
-			currentVersion = F5F7C3C21DBBC59D00BC116E /* ArretoApp.xcdatamodel */;
+			currentVersion = F58499AC1DC4FBC00052B752 /* ArretoApp v1.2.xcdatamodel */;
 			path = ArretoApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
