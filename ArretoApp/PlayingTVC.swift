@@ -35,6 +35,9 @@ class PlayingTVC: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    @IBAction func showMoreOptions(_ sender: UIButton) {
+        delegate?.handleActionSheet(currentCell: self)
+    }
     
     @IBAction func playerWon(_ sender: UIButton) {
         self.changeStatusFromPlayingToWinOrLost( win: true)

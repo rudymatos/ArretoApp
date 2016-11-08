@@ -20,10 +20,10 @@ protocol GameType {
     func getAllPlayerWithNoEvents(board : Board) -> [Player]?
     func findWinLostStreak(currentEvent: Event) -> (winStreak: Int, lostStreak: Int)
     
+    func getAllActiveEventsCountFromBoard(board : Board) -> Int
     func getAllEventsFromBoard(board : Board) -> [Event]
-    func changeEventFromPlayingToWinOrLost(currentEvent: Event, win : Bool)
-    func changeEventToPlaying(currentEvent: Event)
-    func createEvent(status: EventTypeEnum, board: Board, player: Player, winLostStreaks : (winStreak: Int, lostStreak: Int)) throws
+    func changeEventStatus(currentEvent: Event, status : EventTypeEnum)
+    func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?) throws
     
     func clearBoard(board : Board)
     

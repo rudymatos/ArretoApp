@@ -12,4 +12,5 @@ import UIKit
 protocol ActionExecuter {
     func changeStatusToPlaying(currentCell: UITableViewCell)
     func changeStatusFromPlayingToWinOrLost(currentCell: UITableViewCell, win : Bool)
+    func handleActionSheet(currentCell: UITableViewCell)
 }

@@ -46,12 +46,16 @@ class GameImpl: GameType{
     }
     
     
+    func getAllActiveEventsCountFromBoard(board : Board) -> Int{
+        return coreDataHelper.getAllActiveEventsCountFromBoard(board: board)
+    }
+    
     func inactiveEvent(currentEvent : Event){
         coreDataHelper.inactiveEvent(currentEvent: currentEvent)
     }
     
-    func createEvent(status: EventTypeEnum, board: Board, player: Player, winLostStreaks : (winStreak: Int, lostStreak: Int)) throws {
-        if status == EventTypeEnum.arrived && coreDataHelper.doesArrivingEventWasAlreadyCreated(player: player, activeBoard: board){
+    func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?) throws {
+        if let player = player , status == EventTypeEnum.arrived && coreDataHelper.doesArrivingEventWasAlreadyCreated(player: player, activeBoard: board){
             throw ArretoExceptions.ArrivingEventAlreadyExists
         }else{
             let nextNumber = coreDataHelper.getNextEventNumber(activeBoard: board)
@@ -65,18 +69,20 @@ class GameImpl: GameType{
             
             event.status = status.rawValue
             event.board = board
-            event.winingStreak = Int16(winLostStreaks.winStreak)
-            event.losingStreak = Int16(winLostStreaks.lostStreak)
-            event.player = player
+            if let winLostStreaks = winLostStreaks{
+                event.winingStreak = Int16(winLostStreaks.winStreak)
+                event.losingStreak = Int16(winLostStreaks.lostStreak)
+            }
+            
+            if status != EventTypeEnum.summary{
+                event.player = player
+            }
             coreDataHelper.saveContext()
         }
     }
     
-    func changeEventToPlaying(currentEvent: Event){
-        coreDataHelper.changeEventStatus(currentEvent: currentEvent, newEventStatus: .playing)
-    }
-    func changeEventFromPlayingToWinOrLost(currentEvent: Event, win : Bool){
-        coreDataHelper.changeEventStatus(currentEvent: currentEvent, newEventStatus: win ? EventTypeEnum.won : EventTypeEnum.lost)
+    func changeEventStatus(currentEvent: Event, status : EventTypeEnum){
+        coreDataHelper.changeEventStatus(currentEvent: currentEvent, newEventStatus: status)
     }
     
     func findWinLostStreak(currentEvent: Event) -> (winStreak: Int, lostStreak: Int){

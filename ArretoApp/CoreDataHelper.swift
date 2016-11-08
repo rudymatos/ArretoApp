@@ -133,6 +133,17 @@ class CoreDataHelper{
         return doesArrivingEventWasAlreadyCreated
     }
     
+    func getAllActiveEventsCountFromBoard(board: Board) -> Int{
+        let request : NSFetchRequest<Event> = Event.fetchRequest()
+        request.predicate = NSPredicate(format: "board.createdOn = %@ and active = YES", board.createdOn!)
+        do{
+            let results = try managedObjectContext.fetch(request)
+            return results.count
+        }catch{
+        }
+        return 0
+    }
+    
     func getAllEventsFromBoard(board: Board) -> [Event]{
         var results = [Event]()
         let request : NSFetchRequest<Event> = Event.fetchRequest()

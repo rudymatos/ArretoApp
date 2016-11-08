@@ -18,6 +18,7 @@ enum EventTypeEnum: String {
     case temporaryInjured = "Temporary Injured"
     case lost = "Lost"
     case won = "Won"
+    case summary = "Summary"
     
     func getSpanish() -> String{
         switch  self {
@@ -37,6 +38,8 @@ enum EventTypeEnum: String {
             return "Perdió"
         case .won:
             return "Ganó"
+        case .summary:
+            return "Resumen"
         }
     }
 }

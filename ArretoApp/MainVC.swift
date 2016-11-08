@@ -22,12 +22,38 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     override func viewDidLoad() {
         super.viewDidLoad()
         configureApp()
+        configureView()
     }
     
     
     //MARK: - ACTIONEXECUTER
     func changeStatusToPlaying(currentCell: UITableViewCell) {
         createEvent(currentCell: currentCell, newEventType: .playing)
+    }
+    
+    func handleActionSheet(currentCell: UITableViewCell) {
+        if let currentIndex = eventsTV.indexPath(for: currentCell){
+            let currentEvent = eventList[currentIndex.row]
+            if let playerName = currentEvent.player?.name{
+                let actionSheet = UIAlertController(title: playerName, message: "Seleccione la accion a realizar", preferredStyle: .actionSheet)
+                
+                let left = UIAlertAction(title: EventTypeEnum.left.getSpanish(), style: .destructive, handler: { (action) in
+                    self.createEvent(currentCell: currentCell, newEventType: .left)
+                })
+                
+                let temporalInjured = UIAlertAction(title: EventTypeEnum.temporaryInjured.getSpanish(), style: .default, handler: { (action) in
+                    print("not implemented yet")
+                })
+                
+                let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+                
+                actionSheet.addAction(left)
+                actionSheet.addAction(temporalInjured)
+                actionSheet.addAction(cancel)
+                
+                present(actionSheet, animated: true, completion: nil)
+            }
+        }
     }
     
     private func createEvent(currentCell: UITableViewCell, newEventType : EventTypeEnum){
@@ -38,7 +64,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
                 switch newEventType {
                 case .playing:
                     if currentEvent.status == EventTypeEnum.waiting.rawValue{
-                        gameImpl.changeEventToPlaying(currentEvent: currentEvent)
+                        gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
                         reloadSameData(currentIndex: indexPath)
                     }else{
                         gameImpl.inactiveEvent(currentEvent: currentEvent)
@@ -48,11 +74,28 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
                     }
                 case .won, .lost:
                     gameImpl.inactiveEvent(currentEvent: currentEvent)
-                    gameImpl.changeEventFromPlayingToWinOrLost(currentEvent: currentEvent, win: newEventType == .won ? true : false)
+                    gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
                     reloadSameData(currentIndex: indexPath)
                     let winLostStreak = gameImpl.findWinLostStreak(currentEvent: currentEvent)
                     try! gameImpl.createEvent(status: .waiting, board: currentBoard!, player: currentPlayer,winLostStreaks: winLostStreak)
                     reloadNewData()
+                case .left:
+                    
+                    gameImpl.inactiveEvent(currentEvent: currentEvent)
+                    let winLostStreak = gameImpl.findWinLostStreak(currentEvent: currentEvent)
+                    currentEvent.winingStreak = Int16(winLostStreak.winStreak)
+                    currentEvent.losingStreak = Int16(winLostStreak.lostStreak)
+                    gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
+                    reloadSameData(currentIndex: indexPath)
+                    
+                    if gameImpl.getAllActiveEventsCountFromBoard(board: currentBoard!) == 0{
+                        try! gameImpl.createEvent(status: .summary, board: currentBoard!, player: nil,winLostStreaks: nil)
+                        reloadNewData()
+                    }
+                case .temporaryInjured:
+                    print("nothing yet")
+                case .onHold:
+                    print("nothing yet")
                 default:
                     print("nothing yet")
                 }
@@ -69,6 +112,10 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     }
     
     //MARK: - VIEW CONFIGURATION
+    func configureView(){
+        eventsTV.estimatedRowHeight = 150
+        eventsTV.rowHeight = UITableViewAutomaticDimension
+    }
     func configureApp(){
         //Check connectivity to show/hide shared button in navigation bar
         currentBoard = gameImpl.getBoard()
@@ -110,7 +157,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     
     //MARK: - VIEW ACTIONS
-    @IBAction func shareOrJoinBoard(_ sender: UIBarButtonItem) {
+    @IBAction func shareOrJoinBoard(_ sender: UIButton) {
         uniqueKeyToShare = gameImpl.generateUniqueKeyForBoard()
         print("generated key : \(uniqueKeyToShare)")
         performSegue(withIdentifier: "addShareBoard", sender: nil)
@@ -119,7 +166,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     @IBAction func goBackFromAddingPlayer(segue : UIStoryboardSegue){
         reloadNewData()
     }
-    @IBAction func deleteBoardDidTouch(_ sender: UIBarButtonItem) {
+    
+    @IBAction func deleteBoardDidTouch(_ sender: UIButton) {
         //First create alert and notify the user
         
         let deleteBoardAC = UIAlertController(title: "Borrar Pizarra", message: "Desea borrar la pizarra? Todas las entradas seran eliminadas", preferredStyle: .alert)
@@ -138,30 +186,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     }
     
     //MARK: - TableView Methods
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let currentEvent = eventList[indexPath.row]
-        let heightConstant = 10
-        if let eventStatus = currentEvent.status, let eventEnumType = EventTypeEnum(rawValue: eventStatus){
-            switch eventEnumType {
-            case .arrived, .onHold, .waiting:
-                if currentEvent.active{
-                    return CGFloat(75 + heightConstant)
-                }else{
-                    return CGFloat(90 + heightConstant)
-                }
-            case .playing, .won, .lost:
-                if currentEvent.active{
-                    return CGFloat(50 + heightConstant)
-                }else{
-                    return CGFloat(120 + heightConstant)
-                }
-            default:
-                return CGFloat(50 + heightConstant)
-            }
-        }else{
-            return CGFloat(50 + heightConstant)
-        }
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -173,38 +197,52 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentEvent = eventList[indexPath.row]
-        if let eventStatus = currentEvent.status, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus), let playerName = currentEvent.player?.name{
-            let playerInfoDTO = PlayerInfoDTO(playerName: playerName, arrivingOrder: Int(currentEvent.arrivingOrder), listOrder: Int(currentEvent.listOrder), eventStatus: eventTypeEnum, winingStreak: Int(currentEvent.winingStreak), losingStreak: Int(currentEvent.losingStreak))
-            switch eventTypeEnum{
-            case .arrived, .waiting, .onHold:
-                if currentEvent.active {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "aWOHCell", for: indexPath) as! AWOHTVC
-                    cell.playerInfoDTO = playerInfoDTO
-                    cell.delegate = self
-                    return cell
+        if let eventStatus = currentEvent.status, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus){
+            if eventTypeEnum == .summary{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as! SummaryTVC
+                cell.eventList = eventList
+                return cell
+            }else{
+                if let playerName = currentEvent.player?.name{
+                    let playerInfoDTO = PlayerInfoDTO(playerName: playerName, arrivingOrder: Int(currentEvent.arrivingOrder), listOrder: Int(currentEvent.listOrder), eventStatus: eventTypeEnum, winingStreak: Int(currentEvent.winingStreak), losingStreak: Int(currentEvent.losingStreak))
+                    switch eventTypeEnum{
+                    case .arrived, .waiting, .onHold:
+                        if currentEvent.active {
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "aWOHCell", for: indexPath) as! AWOHTVC
+                            cell.playerInfoDTO = playerInfoDTO
+                            cell.delegate = self
+                            return cell
+                        }else{
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "aWOHInactiveCell", for: indexPath) as! AWOHInactiveTVC
+                            cell.playerInfoDTO = playerInfoDTO
+                            return cell
+                        }
+                    case .playing, .won, .lost:
+                        if currentEvent.active{ //JUST PLAYING EVENTS WOULD BE ACTIVE
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "playingCell", for: indexPath) as! PlayingTVC
+                            cell.delegate = self
+                            cell.playerInfoDTO = playerInfoDTO
+                            return cell
+                        }else{
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "wonLostCell", for: indexPath) as! PlayingInactiveTVC
+                            cell.playerInfoDTO = playerInfoDTO
+                            return cell
+                        }
+                    case .left:
+                        let cell = tableView.dequeueReusableCell(withIdentifier: "leftCell", for: indexPath) as! LeftTVC
+                        cell.playerInfoDTO = playerInfoDTO
+                        return cell
+                    default:
+                        return UITableViewCell()
+                    }
                 }else{
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "aWOHInactiveCell", for: indexPath) as! AWOHInactiveTVC
-                    cell.playerInfoDTO = playerInfoDTO
-                    return cell
+                    return UITableViewCell()
                 }
-            case .playing, .won, .lost:
-                if currentEvent.active{ //JUST PLAYING EVENTS WOULD BE ACTIVE
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "playingCell", for: indexPath) as! PlayingTVC
-                    cell.delegate = self
-                    cell.playerInfoDTO = playerInfoDTO
-                    return cell
-                }else{
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "wonLostCell", for: indexPath) as! PlayingInactiveTVC
-                    cell.playerInfoDTO = playerInfoDTO
-                    return cell
-                }
-            default:
-                return UITableViewCell()
+                
             }
         }else{
             return UITableViewCell()
         }
-        
     }
+    
 }
-

@@ -47,6 +47,10 @@ class AWOHTVC: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    @IBAction func showMoreActions(_ sender: UIButton) {
+        delegate?.handleActionSheet(currentCell: self)
+    }
+    
     @IBAction func changeStatusToPlaying(_ sender: UIButton) {
         delegate?.changeStatusToPlaying(currentCell: self)
     }
