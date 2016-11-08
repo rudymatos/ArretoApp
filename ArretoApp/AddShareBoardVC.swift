@@ -11,6 +11,7 @@ import UIKit
 class AddShareBoardVC: UIViewController {
     
     @IBOutlet weak var uniqueKeyToShareLBL: UILabel?
+    @IBOutlet weak var shareView: UIView!
     
     var uniqueKeyToShare : String?{
         didSet{
@@ -22,6 +23,19 @@ class AddShareBoardVC: UIViewController {
     func configureView(){
         print("\(uniqueKeyToShare)")
         uniqueKeyToShareLBL?.text = uniqueKeyToShare
+        
+        if let shareView = shareView{
+            shareView.layer.masksToBounds = true
+            shareView.layer.cornerRadius = 4
+            
+            shareView.layer.masksToBounds = false
+            shareView.layer.shadowOpacity = 1
+            shareView.layer.shadowRadius = 10
+            shareView.layer.shadowOffset = CGSize.zero
+            shareView.layer.shadowColor = UIColor.black.cgColor
+        }
+        
+        
     }
     
     override func viewDidLoad() {

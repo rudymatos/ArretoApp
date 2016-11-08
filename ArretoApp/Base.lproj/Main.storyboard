@@ -31,7 +31,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-J1-O3A">
-                                            <rect key="frame" x="35" y="9" width="307" height="32"/>
+                                            <rect key="frame" x="34.5" y="9" width="306.5" height="32"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sMX-yR-MQD">
                                                     <rect key="frame" x="0.0" y="0.0" width="116.5" height="32"/>
@@ -80,6 +80,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.92549019610000005" green="0.87058823529999996" blue="0.7725490196" alpha="0.26260166952054792" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="Ncx-J1-O3A" firstAttribute="centerX" secondItem="Pju-ZW-pom" secondAttribute="centerX" id="Pfh-VO-uDQ"/>
                                         <constraint firstAttribute="height" constant="50" id="UVd-R4-cLb"/>
@@ -524,28 +525,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPm-y8-LX5">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cni-m6-njN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="c5B-gc-pEs">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cni-m6-njN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                            <connections>
-                                                <action selector="dismissCurrentVC:" destination="VjK-9B-Hk7" eventType="touchUpInside" id="ob6-zh-EYh"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="cni-m6-njN" secondAttribute="bottom" id="8ut-UY-Xdz"/>
-                                        <constraint firstAttribute="trailing" secondItem="cni-m6-njN" secondAttribute="trailing" id="SZo-ce-sv7"/>
-                                        <constraint firstItem="cni-m6-njN" firstAttribute="leading" secondItem="c5B-gc-pEs" secondAttribute="leading" id="ec6-ux-OWo"/>
-                                        <constraint firstItem="cni-m6-njN" firstAttribute="top" secondItem="c5B-gc-pEs" secondAttribute="top" id="gp7-bR-fyl"/>
-                                    </constraints>
-                                </view>
-                                <blurEffect style="extraLight"/>
-                            </visualEffectView>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="dismissCurrentVC:" destination="VjK-9B-Hk7" eventType="touchUpInside" id="ob6-zh-EYh"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hfd-DZ-F7r">
                                 <rect key="frame" x="40" y="134" width="295" height="400"/>
                                 <subviews>
@@ -616,7 +602,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="294" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bfh-6y-ZSE" id="zbw-m5-eVH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="294" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="294" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jugador no encontrado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLs-ok-Mso">
@@ -636,7 +622,7 @@
                                                 <rect key="frame" x="0.0" y="72" width="294" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yus-cN-jPN" id="wwz-4Y-6zr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="294" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="294" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rudy Matos Perez" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9R-9Z-rGK">
@@ -681,11 +667,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zPm-y8-LX5" firstAttribute="centerY" secondItem="Hfd-DZ-F7r" secondAttribute="centerY" id="GMS-sb-kRh"/>
                             <constraint firstItem="Hfd-DZ-F7r" firstAttribute="centerX" secondItem="WBg-KI-LX7" secondAttribute="centerX" id="L7B-4g-ehU"/>
-                            <constraint firstItem="zPm-y8-LX5" firstAttribute="centerX" secondItem="Hfd-DZ-F7r" secondAttribute="centerX" id="S4u-U0-Ywr"/>
-                            <constraint firstItem="zPm-y8-LX5" firstAttribute="leading" secondItem="WBg-KI-LX7" secondAttribute="leading" id="Wo4-ae-QRE"/>
-                            <constraint firstItem="zPm-y8-LX5" firstAttribute="bottom" secondItem="RaZ-dt-i17" secondAttribute="top" id="g8d-zB-yEo"/>
                             <constraint firstItem="Hfd-DZ-F7r" firstAttribute="centerY" secondItem="WBg-KI-LX7" secondAttribute="centerY" id="xRR-Ba-pL5"/>
                         </constraints>
                     </view>
@@ -715,28 +697,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DO8-ZD-UjM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Mz7-CN-hWk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTx-Z3-p4T">
-                                            <rect key="frame" x="0.0" y="-21" width="375" height="688"/>
-                                            <connections>
-                                                <action selector="dismissVC:" destination="fno-7d-faX" eventType="touchUpInside" id="Pzb-kc-QMg"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="JTx-Z3-p4T" firstAttribute="leading" secondItem="Mz7-CN-hWk" secondAttribute="leading" id="Wti-Tb-l58"/>
-                                        <constraint firstAttribute="trailing" secondItem="JTx-Z3-p4T" secondAttribute="trailing" id="ncw-7B-T8R"/>
-                                        <constraint firstAttribute="bottom" secondItem="JTx-Z3-p4T" secondAttribute="bottom" id="scN-ak-1Oa"/>
-                                        <constraint firstItem="JTx-Z3-p4T" firstAttribute="top" secondItem="Mz7-CN-hWk" secondAttribute="top" constant="-21" id="zfK-QL-wRt"/>
-                                    </constraints>
-                                </view>
-                                <blurEffect style="extraLight"/>
-                            </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTx-Z3-p4T">
+                                <rect key="frame" x="0.0" y="-11" width="375" height="688"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="dismissVC:" destination="fno-7d-faX" eventType="touchUpInside" id="Pzb-kc-QMg"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsf-vK-8NZ">
                                 <rect key="frame" x="67" y="183" width="240" height="302"/>
                                 <subviews>
@@ -850,15 +817,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DO8-ZD-UjM" firstAttribute="centerY" secondItem="vsf-vK-8NZ" secondAttribute="centerY" id="Auc-yu-Npg"/>
                             <constraint firstItem="vsf-vK-8NZ" firstAttribute="centerX" secondItem="nFx-Lz-3BQ" secondAttribute="centerX" id="Pnl-qU-lQo"/>
-                            <constraint firstItem="DO8-ZD-UjM" firstAttribute="centerX" secondItem="vsf-vK-8NZ" secondAttribute="centerX" id="bSv-AW-3ZG"/>
                             <constraint firstItem="vsf-vK-8NZ" firstAttribute="centerY" secondItem="nFx-Lz-3BQ" secondAttribute="centerY" id="bkh-hT-ymf"/>
-                            <constraint firstItem="DO8-ZD-UjM" firstAttribute="leading" secondItem="nFx-Lz-3BQ" secondAttribute="leading" id="cDG-QM-K3q"/>
-                            <constraint firstItem="DO8-ZD-UjM" firstAttribute="bottom" secondItem="eN1-US-dj9" secondAttribute="top" id="vj9-kU-7eL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="shareView" destination="vsf-vK-8NZ" id="cBU-K6-trR"/>
                         <outlet property="uniqueKeyToShareLBL" destination="eqe-iH-aoM" id="4dn-WX-AAq"/>
                     </connections>
                 </viewController>

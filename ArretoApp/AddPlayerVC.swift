@@ -33,6 +33,13 @@ class AddPlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         addPlayerView.layer.cornerRadius = 4
         addPlayerView.layer.masksToBounds = true
         configurePlayerListTV()
+        
+        addPlayerView.layer.masksToBounds = false
+        addPlayerView.layer.shadowColor = UIColor.black.cgColor
+        addPlayerView.layer.shadowOpacity = 1
+        addPlayerView.layer.shadowOffset = CGSize.zero
+        addPlayerView.layer.shadowRadius = 10
+        
     }
     
     func configurePlayerListTV(){
