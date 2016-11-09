@@ -153,22 +153,18 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     //MARK: - RELOAD DATA
     private func reloadSameData(currentIndex : IndexPath){
         eventsTV.reloadRows(at: [currentIndex], with: .fade)
-        goToLastRow(currentIndex: currentIndex)
+        goToRow(currentIndex: currentIndex)
     }
     
-    private func goToLastRow(currentIndex: IndexPath){
-        eventsTV.scrollToRow(at: currentIndex, at: .top, animated: true)
+    private func goToRow(currentIndex: IndexPath){
+        eventsTV.scrollToRow(at: currentIndex, at: .bottom, animated: true)
     }
     
     private func reloadNewData(){
         eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!)
-        var newEventsIndexes = [IndexPath]()
-        for i in eventList.count-1..<eventList.count{
-            newEventsIndexes.append(IndexPath(row: i, section: 0))
-        }
         DispatchQueue.main.async {
-            self.eventsTV.insertRows(at: newEventsIndexes, with: .right)
-            self.goToLastRow(currentIndex: newEventsIndexes.first!)
+            self.eventsTV.insertRows(at: [IndexPath(row: self.eventList.count-1, section: 0)], with: .right)
+            self.goToRow(currentIndex: [IndexPath(row: self.eventList.count-1, section: 0)].first!)
         }
     }
     
@@ -211,6 +207,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventList.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentEvent = eventList[indexPath.row]
