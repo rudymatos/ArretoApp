@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AWOHInactiveTVC: UITableViewCell {
+class AWOHTIInactiveTVC: UITableViewCell {
     
     @IBOutlet weak var playerStatusLBL: UILabel!
     @IBOutlet weak var playerNameLBL: UILabel!

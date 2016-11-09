@@ -37,18 +37,36 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
             if let playerName = currentEvent.player?.name{
                 let actionSheet = UIAlertController(title: playerName, message: "Seleccione la accion a realizar", preferredStyle: .actionSheet)
                 
-                let left = UIAlertAction(title: EventTypeEnum.left.getSpanish(), style: .destructive, handler: { (action) in
-                    self.createEvent(currentCell: currentCell, newEventType: .left)
-                })
+                if currentEvent.status != EventTypeEnum.playing.rawValue{
+                    let left = UIAlertAction(title: EventTypeEnum.left.getSpanish(), style: .destructive, handler: { (action) in
+                        self.createEvent(currentCell: currentCell, newEventType: .left)
+                    })
+                    actionSheet.addAction(left)
+                }
                 
-                let temporalInjured = UIAlertAction(title: EventTypeEnum.temporaryInjured.getSpanish(), style: .default, handler: { (action) in
-                    print("not implemented yet")
-                })
+                if currentEvent.status != EventTypeEnum.arrived.rawValue{
+                    
+                    let temporalInjured = UIAlertAction(title: EventTypeEnum.temporaryInjured.getSpanish(), style: .default, handler: { (action) in
+                        self.createEvent(currentCell: currentCell, newEventType: .temporaryInjured)
+                    })
+                    actionSheet.addAction(temporalInjured)
+                    
+                    if currentEvent.status != EventTypeEnum.waiting.rawValue && currentEvent.status != EventTypeEnum.playing.rawValue{
+                        let waiting = UIAlertAction(title: EventTypeEnum.waiting.getSpanish(), style: .default, handler: { (action) in
+                            self.createEvent(currentCell: currentCell, newEventType: .waiting)
+                        })
+                        actionSheet.addAction(waiting)
+                    }
+                    
+                    if currentEvent.status != EventTypeEnum.onHold.rawValue && currentEvent.status != EventTypeEnum.playing.rawValue{
+                        let onHold = UIAlertAction(title: EventTypeEnum.onHold.getSpanish(), style: .default, handler: { (action) in
+                            self.createEvent(currentCell: currentCell, newEventType: .onHold)
+                        })
+                        actionSheet.addAction(onHold)
+                    }
+                }
                 
                 let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-                
-                actionSheet.addAction(left)
-                actionSheet.addAction(temporalInjured)
                 actionSheet.addAction(cancel)
                 
                 present(actionSheet, animated: true, completion: nil)
@@ -63,7 +81,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
                 eventsTV.reloadRows(at: [indexPath], with: .fade)
                 switch newEventType {
                 case .playing:
-                    if currentEvent.status == EventTypeEnum.waiting.rawValue{
+                    if currentEvent.status == EventTypeEnum.waiting.rawValue || currentEvent.status == EventTypeEnum.temporaryInjured.rawValue || currentEvent.status == EventTypeEnum.onHold.rawValue{
                         gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
                         reloadSameData(currentIndex: indexPath)
                     }else{
@@ -92,10 +110,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
                         try! gameImpl.createEvent(status: .summary, board: currentBoard!, player: nil,winLostStreaks: nil)
                         reloadNewData()
                     }
-                case .temporaryInjured:
-                    print("nothing yet")
-                case .onHold:
-                    print("nothing yet")
+                case .temporaryInjured, .waiting, .onHold:
+                    gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
+                    reloadSameData(currentIndex: indexPath)
                 default:
                     print("nothing yet")
                 }
@@ -206,14 +223,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
                 if let playerName = currentEvent.player?.name{
                     let playerInfoDTO = PlayerInfoDTO(playerName: playerName, arrivingOrder: Int(currentEvent.arrivingOrder), listOrder: Int(currentEvent.listOrder), eventStatus: eventTypeEnum, winingStreak: Int(currentEvent.winingStreak), losingStreak: Int(currentEvent.losingStreak))
                     switch eventTypeEnum{
-                    case .arrived, .waiting, .onHold:
+                    case .arrived, .waiting, .onHold, .temporaryInjured:
                         if currentEvent.active {
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "aWOHCell", for: indexPath) as! AWOHTVC
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "aWOHTICell", for: indexPath) as! AWOHTITVC
                             cell.playerInfoDTO = playerInfoDTO
                             cell.delegate = self
                             return cell
                         }else{
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "aWOHInactiveCell", for: indexPath) as! AWOHInactiveTVC
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "AWOHTIInactiveCell", for: indexPath) as! AWOHTIInactiveTVC
                             cell.playerInfoDTO = playerInfoDTO
                             return cell
                         }

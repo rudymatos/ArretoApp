@@ -29,7 +29,7 @@ enum EventTypeEnum: String {
         case .playing:
             return "Jugando"
         case .onHold:
-            return "En Espera (Gano)"
+            return "En Espera (Ganó 2)"
         case .waiting:
             return "En Espera"
         case .temporaryInjured:

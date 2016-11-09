@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AWOHTVC: UITableViewCell {
+class AWOHTITVC: UITableViewCell {
     
     @IBOutlet weak var playerNameLBL: UILabel!
     @IBOutlet weak var playerStatusIV: UIImageView!
@@ -30,6 +30,12 @@ class AWOHTVC: UITableViewCell {
                 case .arrived:
                     playerStatusIV.image = UIImage(named: "arrived_active")
                     arrivingOrderLBL.text = "Llegó de #\(playerInfoDTO.arrivingOrder) a la lista"
+                case .temporaryInjured:
+                    playerStatusIV.image = UIImage(named: "temporary_injured")
+                    arrivingOrderLBL.text = "Habia ganado \(playerInfoDTO.winingStreak) \(playerInfoDTO.winingStreak == 1 ? "juego" : "juegos")"
+                case .onHold:
+                    playerStatusIV.image = UIImage(named: "on_hold")
+                    arrivingOrderLBL.text = "Ganó 2: G\(playerInfoDTO.winingStreak)-P\(playerInfoDTO.losingStreak)-T\(playerInfoDTO.winingStreak + playerInfoDTO.losingStreak)"
                 default:
                     playerStatusIV.image = UIImage(named: "waiting")
                     arrivingOrderLBL.text = "Ha ganado \(playerInfoDTO.winingStreak) \(playerInfoDTO.winingStreak == 1 ? "juego" : "juegos")"

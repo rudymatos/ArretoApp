@@ -10,11 +10,11 @@
 		F50FE6191DC9944500029A11 /* KeyGeneratorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6181DC9944500029A11 /* KeyGeneratorHelper.swift */; };
 		F50FE61B1DC996E200029A11 /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE61A1DC996E200029A11 /* KeyGenerator.swift */; };
 		F50FE61D1DC9A1A900029A11 /* AddShareBoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE61C1DC9A1A900029A11 /* AddShareBoardVC.swift */; };
-		F50FE61F1DC9B2B900029A11 /* AWOHTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE61E1DC9B2B900029A11 /* AWOHTVC.swift */; };
+		F50FE61F1DC9B2B900029A11 /* AWOHTITVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE61E1DC9B2B900029A11 /* AWOHTITVC.swift */; };
 		F50FE6211DC9B35900029A11 /* ActionExecuter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6201DC9B35900029A11 /* ActionExecuter.swift */; };
 		F50FE6231DC9B5DD00029A11 /* PlayerInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6221DC9B5DD00029A11 /* PlayerInfoDTO.swift */; };
 		F50FE6251DCE370C00029A11 /* PlayingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6241DCE370C00029A11 /* PlayingTVC.swift */; };
-		F50FE6271DCE38B300029A11 /* AWOHInactiveTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6261DCE38B300029A11 /* AWOHInactiveTVC.swift */; };
+		F50FE6271DCE38B300029A11 /* AWOHTIInactiveTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6261DCE38B300029A11 /* AWOHTIInactiveTVC.swift */; };
 		F50FE6291DCE8DB800029A11 /* PlayingInactiveTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */; };
 		F50FE62B1DCEB53000029A11 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE62A1DCEB53000029A11 /* ColorUtil.swift */; };
 		F50FE62D1DD160E800029A11 /* LeftTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE62C1DD160E800029A11 /* LeftTVC.swift */; };
@@ -50,11 +50,11 @@
 		F50FE6181DC9944500029A11 /* KeyGeneratorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGeneratorHelper.swift; sourceTree = "<group>"; };
 		F50FE61A1DC996E200029A11 /* KeyGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGenerator.swift; sourceTree = "<group>"; };
 		F50FE61C1DC9A1A900029A11 /* AddShareBoardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShareBoardVC.swift; sourceTree = "<group>"; };
-		F50FE61E1DC9B2B900029A11 /* AWOHTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWOHTVC.swift; sourceTree = "<group>"; };
+		F50FE61E1DC9B2B900029A11 /* AWOHTITVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWOHTITVC.swift; sourceTree = "<group>"; };
 		F50FE6201DC9B35900029A11 /* ActionExecuter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionExecuter.swift; sourceTree = "<group>"; };
 		F50FE6221DC9B5DD00029A11 /* PlayerInfoDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoDTO.swift; sourceTree = "<group>"; };
 		F50FE6241DCE370C00029A11 /* PlayingTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingTVC.swift; sourceTree = "<group>"; };
-		F50FE6261DCE38B300029A11 /* AWOHInactiveTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWOHInactiveTVC.swift; sourceTree = "<group>"; };
+		F50FE6261DCE38B300029A11 /* AWOHTIInactiveTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWOHTIInactiveTVC.swift; sourceTree = "<group>"; };
 		F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingInactiveTVC.swift; sourceTree = "<group>"; };
 		F50FE62A1DCEB53000029A11 /* ColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
 		F50FE62C1DD160E800029A11 /* LeftTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTVC.swift; sourceTree = "<group>"; };
@@ -117,9 +117,9 @@
 		F58499A91DBEF14A0052B752 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				F50FE6261DCE38B300029A11 /* AWOHInactiveTVC.swift */,
+				F50FE6261DCE38B300029A11 /* AWOHTIInactiveTVC.swift */,
 				F58499AA1DBEF1610052B752 /* PlayerNameTCV.swift */,
-				F50FE61E1DC9B2B900029A11 /* AWOHTVC.swift */,
+				F50FE61E1DC9B2B900029A11 /* AWOHTITVC.swift */,
 				F50FE6241DCE370C00029A11 /* PlayingTVC.swift */,
 				F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */,
 				F50FE62C1DD160E800029A11 /* LeftTVC.swift */,
@@ -391,8 +391,8 @@
 				F5F7C3E81DBBDC2700BC116E /* GameImpl.swift in Sources */,
 				F5CF8A791DBD24B30043E05A /* ArretoExceptions.swift in Sources */,
 				F50FE62D1DD160E800029A11 /* LeftTVC.swift in Sources */,
-				F50FE61F1DC9B2B900029A11 /* AWOHTVC.swift in Sources */,
-				F50FE6271DCE38B300029A11 /* AWOHInactiveTVC.swift in Sources */,
+				F50FE61F1DC9B2B900029A11 /* AWOHTITVC.swift in Sources */,
+				F50FE6271DCE38B300029A11 /* AWOHTIInactiveTVC.swift in Sources */,
 				F5F7C3DC1DBBD39A00BC116E /* Board+CoreDataClass.swift in Sources */,
 				F594C7011DD16EA400AB8B3A /* SummaryTVC.swift in Sources */,
 				F50FE6231DC9B5DD00029A11 /* PlayerInfoDTO.swift in Sources */,
