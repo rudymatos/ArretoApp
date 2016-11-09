@@ -152,8 +152,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     //MARK: - RELOAD DATA
     private func reloadSameData(currentIndex : IndexPath){
-        eventsTV.reloadRows(at: [currentIndex], with: .fade)
-        goToRow(currentIndex: currentIndex)
+        self.eventsTV.reloadRows(at: [currentIndex], with: .fade)
     }
     
     private func goToRow(currentIndex: IndexPath){
@@ -163,7 +162,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     private func reloadNewData(){
         eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!)
         DispatchQueue.main.async {
-            self.eventsTV.insertRows(at: [IndexPath(row: self.eventList.count-1, section: 0)], with: .right)
+            self.eventsTV.reloadData()
             self.goToRow(currentIndex: [IndexPath(row: self.eventList.count-1, section: 0)].first!)
         }
     }
