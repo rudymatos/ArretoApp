@@ -21,7 +21,6 @@ class AddShareBoardVC: UIViewController {
     
     
     func configureView(){
-        print("\(uniqueKeyToShare)")
         uniqueKeyToShareLBL?.text = uniqueKeyToShare
         
         if let shareView = shareView{

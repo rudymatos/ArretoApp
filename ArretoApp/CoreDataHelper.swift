@@ -71,7 +71,6 @@ class CoreDataHelper{
     }
     
     //MARK: Events Methods
-    
     func inactiveEvent(currentEvent: Event){
         currentEvent.active = false
         saveContext()
@@ -86,14 +85,6 @@ class CoreDataHelper{
         }
         saveContext()
     }
-    //func createEvent(order: Int, status: String, board : Board, player: Player){
-    //    let currentEvent = createObjectContext(entityName: Event.className) as! Event
-    //  currentEvent.order = Int16(order)
-    //currentEvent.status = status
-    //currentEvent.board = board
-    //currentEvent.player = player
-    // saveContext()
-    //}
     
     func getNextEventNumber(activeBoard board: Board) -> Int{
         var nextNumber = 0
@@ -118,7 +109,6 @@ class CoreDataHelper{
         }
         return nextNumber
     }
-    
     
     
     func doesArrivingEventWasAlreadyCreated(player : Player, activeBoard board: Board) -> Bool {
@@ -152,6 +142,23 @@ class CoreDataHelper{
         do{
             results = try managedObjectContext.fetch(request)
             return results
+        }catch{
+        }
+        return results
+    }
+    
+    func getAllEventsFromBoard(board:Board , byStatus: EventTypeEnum?) -> [Event]{
+        var results = [Event]()
+        let request : NSFetchRequest<Event> = Event.fetchRequest()
+        var  predicate : NSPredicate?
+        if let status = byStatus{
+            predicate  = NSPredicate(format: "board.createdOn = %@ AND status = %@", board.createdOn!, status.rawValue)
+        }else{
+            predicate = NSPredicate(format: "board.createdOn = %@", board.createdOn!)
+        }
+        request.predicate = predicate
+        do{
+            results = try managedObjectContext.fetch(request)
         }catch{
         }
         return results

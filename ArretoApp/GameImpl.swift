@@ -12,13 +12,10 @@ class GameImpl: GameType{
     
     private let coreDataHelper = CoreDataHelper.sharedInstance
     private let firebaseHelper = FirebaseHelper.sharedInstance
-    private let keyGenHelper = KeyGeneratorHelper.sharedInstance
+    private let userDefaultsHelper = UserDefaultsHelper.sharedInstance
     
     internal let maxNumberOfActiveEvents = 10
     
-    func generateUniqueKeyForBoard() -> String{
-        return keyGenHelper.generateUniqueKey()
-    }
     
     func getBoard() -> Board {
         return coreDataHelper.isThereAnActiveBoard() ? coreDataHelper.getActiveBoard() : coreDataHelper.createBoard()
@@ -41,20 +38,23 @@ class GameImpl: GameType{
         }
     }
     
-    func getAllEventsFromBoard(board : Board) -> [Event]{
-        return coreDataHelper.getAllEventsFromBoard(board:board)
+    func getAllEventsFromBoard(board : Board, byStatus: EventTypeEnum?) -> [Event]{
+        return coreDataHelper.getAllEventsFromBoard(board: board, byStatus: byStatus)
     }
-    
     
     func getAllActiveEventsCountFromBoard(board : Board) -> Int{
         return coreDataHelper.getAllActiveEventsCountFromBoard(board: board)
     }
     
-    func inactiveEvent(currentEvent : Event){
+    func inactiveEvent(currentBoard : Board, currentEvent : Event){
         coreDataHelper.inactiveEvent(currentEvent: currentEvent)
+        if userDefaultsHelper.isBoardBeingShared(){
+            //check this because the device id implementation should be different
+            firebaseHelper.inactiveEvent(deviceId: userDefaultsHelper.retriveDeviceKey(), currentBoard: currentBoard, event: currentEvent)
+        }
     }
     
-    func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?) throws {
+    func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?, summaryText : String?) throws {
         if let player = player , status == EventTypeEnum.arrived && coreDataHelper.doesArrivingEventWasAlreadyCreated(player: player, activeBoard: board){
             throw ArretoExceptions.ArrivingEventAlreadyExists
         }else{
@@ -77,12 +77,27 @@ class GameImpl: GameType{
             if status != EventTypeEnum.summary{
                 event.player = player
             }
+            
+            if let summaryText = summaryText , status == EventTypeEnum.summary{
+                event.summaryText = summaryText
+            }
+            
+            if userDefaultsHelper.isBoardBeingShared(){
+                //check this because the device id implementation should be different
+                event.firebaseId = firebaseHelper.createEventFor(deviceId: userDefaultsHelper.retriveDeviceKey(), currentBoard: board, event: event)
+            }
+            
             coreDataHelper.saveContext()
+            
         }
     }
     
-    func changeEventStatus(currentEvent: Event, status : EventTypeEnum){
+    func changeEventStatus(currentBoard : Board, currentEvent: Event, status : EventTypeEnum){
         coreDataHelper.changeEventStatus(currentEvent: currentEvent, newEventStatus: status)
+        if userDefaultsHelper.isBoardBeingShared(){
+            firebaseHelper.changeEventStatus(deviceId: userDefaultsHelper.retriveDeviceKey(), currentBoard: currentBoard, currentEvent: currentEvent, newEventStatus: status)
+        }
+        
     }
     
     func findWinLostStreak(currentEvent: Event) -> (winStreak: Int, lostStreak: Int){
@@ -91,10 +106,30 @@ class GameImpl: GameType{
     
     func clearBoard(board: Board) {
         coreDataHelper.changeBoardStatusToClose(board: board)
+        userDefaultsHelper.shareBoard(sharing: false)
+
     }
     
     func findPlayers(byName playerName: String) -> [Player]? {
         return coreDataHelper.findPlayersByNameLike(name: playerName)
+    }
+    
+    
+    func shareBoard(currentBoard: Board) -> String{
+        let deviceId = userDefaultsHelper.isThereADeviceKey() ? userDefaultsHelper.retriveDeviceKey() : userDefaultsHelper.saveDeviceKey(deviceKey: firebaseHelper.createDeviceId())
+        let keys = firebaseHelper.createBoard(deviceId: deviceId, board: currentBoard)
+        currentBoard.firebaseId = keys.boardFBId
+        currentBoard.published = true
+        
+        if let events = currentBoard.events{
+            for event in events.allObjects as! [Event] {
+               event.firebaseId = firebaseHelper.createEventFor(deviceId: deviceId, currentBoard: currentBoard, event: event)
+            }
+        }
+        
+        coreDataHelper.saveContext()
+        userDefaultsHelper.shareBoard(sharing: true)
+        return keys.boardKey
     }
     
 }

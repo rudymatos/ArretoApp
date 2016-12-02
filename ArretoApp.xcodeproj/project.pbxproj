@@ -18,12 +18,17 @@
 		F50FE6291DCE8DB800029A11 /* PlayingInactiveTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */; };
 		F50FE62B1DCEB53000029A11 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE62A1DCEB53000029A11 /* ColorUtil.swift */; };
 		F50FE62D1DD160E800029A11 /* LeftTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50FE62C1DD160E800029A11 /* LeftTVC.swift */; };
+		F5221B051DDF25880017BBBD /* FirebaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5221B041DDF25880017BBBD /* FirebaseType.swift */; };
+		F5221B071DE10A0C0017BBBD /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5221B061DE10A0C0017BBBD /* UserDefaultsHelper.swift */; };
 		F58499AB1DBEF1610052B752 /* PlayerNameTCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58499AA1DBEF1610052B752 /* PlayerNameTCV.swift */; };
 		F594C7011DD16EA400AB8B3A /* SummaryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F594C7001DD16EA400AB8B3A /* SummaryTVC.swift */; };
 		F596422A1DC980B3001FA9A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F59642291DC980B3001FA9A9 /* GoogleService-Info.plist */; };
 		F596422C1DC980DD001FA9A9 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F596422B1DC980DD001FA9A9 /* FirebaseHelper.swift */; };
 		F5CF8A791DBD24B30043E05A /* ArretoExceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8A781DBD24B30043E05A /* ArretoExceptions.swift */; };
 		F5CF8A7C1DBD29AD0043E05A /* EventTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8A7B1DBD29AD0043E05A /* EventTypeEnum.swift */; };
+		F5DB98FB1DE639D700FD9933 /* ViewModeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB98FA1DE639D700FD9933 /* ViewModeEnum.swift */; };
+		F5DB98FD1DE67BBC00FD9933 /* ChangeViewModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB98FC1DE67BBC00FD9933 /* ChangeViewModeVC.swift */; };
+		F5DB98FF1DE67BEC00FD9933 /* ViewModeCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB98FE1DE67BEC00FD9933 /* ViewModeCVC.swift */; };
 		F5F7C3BB1DBBC59D00BC116E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */; };
 		F5F7C3BD1DBBC59D00BC116E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */; };
 		F5F7C3C01DBBC59D00BC116E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3BE1DBBC59D00BC116E /* Main.storyboard */; };
@@ -58,6 +63,9 @@
 		F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingInactiveTVC.swift; sourceTree = "<group>"; };
 		F50FE62A1DCEB53000029A11 /* ColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
 		F50FE62C1DD160E800029A11 /* LeftTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTVC.swift; sourceTree = "<group>"; };
+		F5221B031DDF23740017BBBD /* ArretoApp v1. 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ArretoApp v1. 3.xcdatamodel"; sourceTree = "<group>"; };
+		F5221B041DDF25880017BBBD /* FirebaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseType.swift; sourceTree = "<group>"; };
+		F5221B061DE10A0C0017BBBD /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		F58499AA1DBEF1610052B752 /* PlayerNameTCV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNameTCV.swift; sourceTree = "<group>"; };
 		F58499AC1DC4FBC00052B752 /* ArretoApp v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ArretoApp v1.2.xcdatamodel"; sourceTree = "<group>"; };
 		F594C7001DD16EA400AB8B3A /* SummaryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryTVC.swift; sourceTree = "<group>"; };
@@ -65,6 +73,9 @@
 		F596422B1DC980DD001FA9A9 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		F5CF8A781DBD24B30043E05A /* ArretoExceptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArretoExceptions.swift; sourceTree = "<group>"; };
 		F5CF8A7B1DBD29AD0043E05A /* EventTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTypeEnum.swift; sourceTree = "<group>"; };
+		F5DB98FA1DE639D700FD9933 /* ViewModeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModeEnum.swift; sourceTree = "<group>"; };
+		F5DB98FC1DE67BBC00FD9933 /* ChangeViewModeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeViewModeVC.swift; sourceTree = "<group>"; };
+		F5DB98FE1DE67BEC00FD9933 /* ViewModeCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModeCVC.swift; sourceTree = "<group>"; };
 		F5F7C3B71DBBC59D00BC116E /* ArretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -124,6 +135,7 @@
 				F50FE6281DCE8DB800029A11 /* PlayingInactiveTVC.swift */,
 				F50FE62C1DD160E800029A11 /* LeftTVC.swift */,
 				F594C7001DD16EA400AB8B3A /* SummaryTVC.swift */,
+				F5DB98FE1DE67BEC00FD9933 /* ViewModeCVC.swift */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -132,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				F5CF8A7B1DBD29AD0043E05A /* EventTypeEnum.swift */,
+				F5DB98FA1DE639D700FD9933 /* ViewModeEnum.swift */,
 			);
 			name = enums;
 			sourceTree = "<group>";
@@ -182,6 +195,7 @@
 				F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */,
 				F5F7C3E91DBBE04A00BC116E /* AddPlayerVC.swift */,
 				F50FE61C1DC9A1A900029A11 /* AddShareBoardVC.swift */,
+				F5DB98FC1DE67BBC00FD9933 /* ChangeViewModeVC.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -214,6 +228,7 @@
 				F596422B1DC980DD001FA9A9 /* FirebaseHelper.swift */,
 				F50FE6181DC9944500029A11 /* KeyGeneratorHelper.swift */,
 				F50FE62A1DCEB53000029A11 /* ColorUtil.swift */,
+				F5221B061DE10A0C0017BBBD /* UserDefaultsHelper.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -237,6 +252,7 @@
 				F5F7C3E31DBBDBC700BC116E /* GameType.swift */,
 				F50FE61A1DC996E200029A11 /* KeyGenerator.swift */,
 				F50FE6201DC9B35900029A11 /* ActionExecuter.swift */,
+				F5221B041DDF25880017BBBD /* FirebaseType.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -388,14 +404,17 @@
 			files = (
 				F5F7C3E11DBBD39A00BC116E /* Event+CoreDataProperties.swift in Sources */,
 				F50FE6211DC9B35900029A11 /* ActionExecuter.swift in Sources */,
+				F5DB98FB1DE639D700FD9933 /* ViewModeEnum.swift in Sources */,
 				F5F7C3E81DBBDC2700BC116E /* GameImpl.swift in Sources */,
 				F5CF8A791DBD24B30043E05A /* ArretoExceptions.swift in Sources */,
 				F50FE62D1DD160E800029A11 /* LeftTVC.swift in Sources */,
 				F50FE61F1DC9B2B900029A11 /* AWOHTITVC.swift in Sources */,
 				F50FE6271DCE38B300029A11 /* AWOHTIInactiveTVC.swift in Sources */,
+				F5DB98FF1DE67BEC00FD9933 /* ViewModeCVC.swift in Sources */,
 				F5F7C3DC1DBBD39A00BC116E /* Board+CoreDataClass.swift in Sources */,
 				F594C7011DD16EA400AB8B3A /* SummaryTVC.swift in Sources */,
 				F50FE6231DC9B5DD00029A11 /* PlayerInfoDTO.swift in Sources */,
+				F5221B051DDF25880017BBBD /* FirebaseType.swift in Sources */,
 				F596422C1DC980DD001FA9A9 /* FirebaseHelper.swift in Sources */,
 				F50FE61D1DC9A1A900029A11 /* AddShareBoardVC.swift in Sources */,
 				F5F7C3BD1DBBC59D00BC116E /* MainVC.swift in Sources */,
@@ -409,8 +428,10 @@
 				F50FE62B1DCEB53000029A11 /* ColorUtil.swift in Sources */,
 				F50FE6191DC9944500029A11 /* KeyGeneratorHelper.swift in Sources */,
 				F5F7C3C31DBBC59D00BC116E /* ArretoApp.xcdatamodeld in Sources */,
+				F5221B071DE10A0C0017BBBD /* UserDefaultsHelper.swift in Sources */,
 				F5F7C3D01DBBD0B900BC116E /* CoreDataHelper.swift in Sources */,
 				F50FE6251DCE370C00029A11 /* PlayingTVC.swift in Sources */,
+				F5DB98FD1DE67BBC00FD9933 /* ChangeViewModeVC.swift in Sources */,
 				F5F7C3DE1DBBD39A00BC116E /* Player+CoreDataClass.swift in Sources */,
 				F5F7C3BB1DBBC59D00BC116E /* AppDelegate.swift in Sources */,
 				F50FE61B1DC996E200029A11 /* KeyGenerator.swift in Sources */,
@@ -542,6 +563,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7XYHS53D2W;
 				INFOPLIST_FILE = ArretoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beardedgentleman.anotame.ArretoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -556,6 +578,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7XYHS53D2W;
 				INFOPLIST_FILE = ArretoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beardedgentleman.anotame.ArretoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -590,10 +613,11 @@
 		F5F7C3C11DBBC59D00BC116E /* ArretoApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F5221B031DDF23740017BBBD /* ArretoApp v1. 3.xcdatamodel */,
 				F58499AC1DC4FBC00052B752 /* ArretoApp v1.2.xcdatamodel */,
 				F5F7C3C21DBBC59D00BC116E /* ArretoApp.xcdatamodel */,
 			);
-			currentVersion = F58499AC1DC4FBC00052B752 /* ArretoApp v1.2.xcdatamodel */;
+			currentVersion = F5221B031DDF23740017BBBD /* ArretoApp v1. 3.xcdatamodel */;
 			path = ArretoApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

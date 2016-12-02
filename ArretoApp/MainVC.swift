@@ -16,6 +16,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     private var eventList = [Event]()
     private var currentBoard : Board?
     private let gameImpl = GameImpl()
+    private var viewMode = ViewModeEnum.all
     
     private var uniqueKeyToShare : String?
     
@@ -82,42 +83,54 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
                 switch newEventType {
                 case .playing:
                     if currentEvent.status == EventTypeEnum.waiting.rawValue || currentEvent.status == EventTypeEnum.temporaryInjured.rawValue || currentEvent.status == EventTypeEnum.onHold.rawValue{
-                        gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
+                        gameImpl.changeEventStatus(currentBoard : currentBoard!, currentEvent: currentEvent, status: newEventType)
                         reloadSameData(currentIndex: indexPath)
                     }else{
-                        gameImpl.inactiveEvent(currentEvent: currentEvent)
+                        gameImpl.inactiveEvent(currentBoard: currentBoard!, currentEvent: currentEvent)
                         reloadSameData(currentIndex: indexPath)
-                        try! gameImpl.createEvent(status: newEventType, board: currentBoard!, player: currentPlayer,winLostStreaks: (0,0))
-                        reloadNewData()
+                        try! gameImpl.createEvent(status: newEventType, board: currentBoard!, player: currentPlayer,winLostStreaks: (0,0), summaryText: nil)
+                        filterEvents(toMode: viewMode)
                     }
                 case .won, .lost:
-                    gameImpl.inactiveEvent(currentEvent: currentEvent)
-                    gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
+                    gameImpl.inactiveEvent(currentBoard: currentBoard!, currentEvent: currentEvent)
+                    gameImpl.changeEventStatus(currentBoard : currentBoard!, currentEvent: currentEvent, status: newEventType)
                     reloadSameData(currentIndex: indexPath)
                     let winLostStreak = gameImpl.findWinLostStreak(currentEvent: currentEvent)
-                    try! gameImpl.createEvent(status: .waiting, board: currentBoard!, player: currentPlayer,winLostStreaks: winLostStreak)
-                    reloadNewData()
+                    try! gameImpl.createEvent(status: .waiting, board: currentBoard!, player: currentPlayer,winLostStreaks: winLostStreak, summaryText: nil)
+                    filterEvents(toMode: viewMode)
                 case .left:
                     
-                    gameImpl.inactiveEvent(currentEvent: currentEvent)
+                    gameImpl.inactiveEvent(currentBoard: currentBoard!, currentEvent: currentEvent)
                     let winLostStreak = gameImpl.findWinLostStreak(currentEvent: currentEvent)
                     currentEvent.winingStreak = Int16(winLostStreak.winStreak)
                     currentEvent.losingStreak = Int16(winLostStreak.lostStreak)
-                    gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
+                    gameImpl.changeEventStatus(currentBoard : currentBoard!, currentEvent: currentEvent, status: newEventType)
                     reloadSameData(currentIndex: indexPath)
                     
                     if gameImpl.getAllActiveEventsCountFromBoard(board: currentBoard!) == 0{
-                        try! gameImpl.createEvent(status: .summary, board: currentBoard!, player: nil,winLostStreaks: nil)
-                        reloadNewData()
+                        try! gameImpl.createEvent(status: .summary, board: currentBoard!, player: nil,winLostStreaks: nil, summaryText: generateSummaryText())
+                        filterEvents(toMode: viewMode)
                     }
                 case .temporaryInjured, .waiting, .onHold:
-                    gameImpl.changeEventStatus(currentEvent: currentEvent, status: newEventType)
+                    gameImpl.changeEventStatus(currentBoard : currentBoard!, currentEvent: currentEvent, status: newEventType)
                     reloadSameData(currentIndex: indexPath)
                 default:
                     print("nothing yet")
                 }
             }
         }
+    }
+    
+    private func generateSummaryText() -> String{
+        var summaryText = ""
+        for currentEvent in eventList{
+            if currentEvent.status == EventTypeEnum.left.rawValue{
+                if let playerName = currentEvent.player?.name{
+                    summaryText += "\(currentEvent.winingStreak)G/\(currentEvent.losingStreak)P : \(playerName.uppercased())\n"
+                }
+            }
+        }
+        return summaryText
     }
     
     func changeStatusFromPlayingToWinOrLost(currentCell: UITableViewCell, win: Bool) {
@@ -130,13 +143,13 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     //MARK: - VIEW CONFIGURATION
     func configureView(){
-        eventsTV.estimatedRowHeight = 150
         eventsTV.rowHeight = UITableViewAutomaticDimension
+        eventsTV.estimatedRowHeight = 150
     }
     func configureApp(){
         //Check connectivity to show/hide shared button in navigation bar
         currentBoard = gameImpl.getBoard()
-        eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!)
+        filterEvents(toMode: viewMode)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -146,6 +159,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
         }else if segue.identifier == "addShareBoard"{
             let destination = segue.destination as! AddShareBoardVC
             destination.uniqueKeyToShare = uniqueKeyToShare
+        }else if segue.identifier == "changeViewSegue"{
+            let destination = segue.destination as! ChangeViewModeVC
+            destination.selectedViewMode = viewMode
         }
     }
     
@@ -159,24 +175,71 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
         eventsTV.scrollToRow(at: currentIndex, at: .bottom, animated: true)
     }
     
-    private func reloadNewData(){
-        eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!)
+    private func filterEvents(toMode: ViewModeEnum, playerName: String? = nil){
+        switch toMode {
+        case .all:
+            eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!, byStatus: nil)
+        case .activeOnly:
+            eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!, byStatus: nil).filter({$0.active})
+        case .inactiveOnly:
+            eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!, byStatus: nil).filter({$0.active == false})
+        case .byPlayer:
+            if let playerName = playerName{
+                eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!, byStatus: nil).filter({ (currentEvent) -> Bool in
+                    if let currentPlayer = currentEvent.player, let currentPlayerName = currentPlayer.name{
+                        if currentPlayerName.contains(playerName){
+                            return true
+                        }
+                    }
+                    return false
+                })
+            }
+        default:
+            eventList = gameImpl.getAllEventsFromBoard(board: currentBoard!, byStatus: toMode.getEventType())
+        }
+        
         DispatchQueue.main.async {
             self.eventsTV.reloadData()
-            self.goToRow(currentIndex: [IndexPath(row: self.eventList.count-1, section: 0)].first!)
+            if self.eventList.count > 0{
+                self.goToRow(currentIndex: [IndexPath(row: self.eventList.count-1, section: 0)].first!)
+            }
         }
+        
     }
-    
     
     //MARK: - VIEW ACTIONS
     @IBAction func shareOrJoinBoard(_ sender: UIButton) {
-        uniqueKeyToShare = gameImpl.generateUniqueKeyForBoard()
-        print("generated key : \(uniqueKeyToShare)")
+        uniqueKeyToShare = gameImpl.shareBoard(currentBoard: currentBoard!)
         performSegue(withIdentifier: "addShareBoard", sender: nil)
-        
     }
+    
+    @IBAction func changeViewMode(_ sender: UIBarButtonItem) {
+        let alertVC = UIAlertController(title: "Filtrar Eventos", message: "Seleccione el tipo de eventos que desea visualizar", preferredStyle: .actionSheet)
+        for currentViewMode in ViewModeEnum.allValues{
+            alertVC.addAction(currentViewMode.getActionAlert(completion: { (action) in
+                self.filterEvents(toMode: currentViewMode)
+                self.viewMode = currentViewMode
+            }))
+            
+        }
+        present(alertVC, animated: true, completion: nil)
+    }
+    
     @IBAction func goBackFromAddingPlayer(segue : UIStoryboardSegue){
-        reloadNewData()
+        filterEvents(toMode: viewMode)
+    }
+    
+    @IBAction func goBackFromChangeView(segue : UIStoryboardSegue){
+        let changeViewVC = segue.source as! ChangeViewModeVC
+        let selectedViewMode =  changeViewVC.selectedViewMode
+        if viewMode != selectedViewMode{
+            viewMode = selectedViewMode
+            filterEvents(toMode: viewMode)
+        }
+    }
+    
+    @IBAction func cancelActionToMainVC(segue: UIStoryboardSegue){
+        
     }
     
     @IBAction func deleteBoardDidTouch(_ sender: UIButton) {
@@ -198,7 +261,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     }
     
     //MARK: - TableView Methods
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -207,13 +269,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
         return eventList.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentEvent = eventList[indexPath.row]
         if let eventStatus = currentEvent.status, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus){
             if eventTypeEnum == .summary{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as! SummaryTVC
-                cell.eventList = eventList
+                cell.currentEvent = currentEvent
                 return cell
             }else{
                 if let playerName = currentEvent.player?.name{

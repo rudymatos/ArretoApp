@@ -16,12 +16,15 @@ extension Event {
     }
 
     @NSManaged public var status: String?
+    @NSManaged public var firebaseId: String?
+    @NSManaged public var summaryText: String?
     @NSManaged public var listOrder: Int16
     @NSManaged public var arrivingOrder: Int16
     @NSManaged public var winingStreak: Int16
     @NSManaged public var losingStreak: Int16
     @NSManaged public var board: Board?
     @NSManaged public var active: Bool
+    @NSManaged public var published: Bool
     @NSManaged public var player: Player?
 
 }

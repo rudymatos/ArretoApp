@@ -19,6 +19,7 @@ extension Board {
     @NSManaged public var published: Bool
     @NSManaged public var active: Bool
     @NSManaged public var key: String?
+    @NSManaged public var firebaseId: String?
     @NSManaged public var events: NSSet?
 
 }

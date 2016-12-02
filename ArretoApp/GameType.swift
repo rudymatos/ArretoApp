@@ -21,14 +21,13 @@ protocol GameType {
     func findWinLostStreak(currentEvent: Event) -> (winStreak: Int, lostStreak: Int)
     
     func getAllActiveEventsCountFromBoard(board : Board) -> Int
-    func getAllEventsFromBoard(board : Board) -> [Event]
-    func changeEventStatus(currentEvent: Event, status : EventTypeEnum)
-    func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?) throws
-    
+    func getAllEventsFromBoard(board : Board, byStatus: EventTypeEnum?) -> [Event]
+    func changeEventStatus(currentBoard : Board, currentEvent: Event, status : EventTypeEnum)
+    func inactiveEvent(currentBoard : Board, currentEvent : Event)
+    func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?, summaryText : String?) throws
+    func shareBoard(currentBoard : Board) -> String
     func clearBoard(board : Board)
-    
-    //MARK: - FIREBASE METHODS
-    func generateUniqueKeyForBoard() -> String
+
     
     
 
