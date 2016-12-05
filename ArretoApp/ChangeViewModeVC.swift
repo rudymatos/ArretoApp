@@ -13,6 +13,7 @@ class ChangeViewModeVC: UIViewController, UICollectionViewDelegate, UICollection
     @IBOutlet weak var collectionView: UICollectionView?
     private var selectedIndex : IndexPath?
     var selectedViewMode = ViewModeEnum.all
+    var playerNameToSearch : String? = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,12 @@ class ChangeViewModeVC: UIViewController, UICollectionViewDelegate, UICollection
     }
     
     @IBAction func applyChanges(_ sender: UIButton) {
-        performSegue(withIdentifier: "backToMainFromChangeViewSegue", sender: nil)
+        if selectedViewMode == .byPlayer{
+            generateByPlayerFilteringAlertVC()
+        }else{
+            performSegue(withIdentifier: "backToMainFromChangeViewSegue", sender: nil)
+        }
+        
     }
     
     func configureView(){
@@ -30,6 +36,27 @@ class ChangeViewModeVC: UIViewController, UICollectionViewDelegate, UICollection
             changeSelection(collectionView: collectionView, indexPath: indexPath)
         }
     }
+    
+    private func generateByPlayerFilteringAlertVC(){
+        let byPlayerAlert = UIAlertController(title: "Filtre Eventos por Jugador", message: "Escriba el nombre del jugador", preferredStyle: .alert)
+        byPlayerAlert.addTextField(configurationHandler: { (textField) in
+            textField.placeholder = "Parte o nombre completo ex.: Ru or Rudy"
+        })
+        
+        let filterAction = UIAlertAction(title: "Filtrar", style: .default, handler: { (action) in
+            if let playerNameFT = byPlayerAlert.textFields?.first, let playerName = playerNameFT.text{
+                self.playerNameToSearch = playerName
+                self.performSegue(withIdentifier: "backToMainFromChangeViewSegue", sender: nil)
+            }
+            
+        })
+        
+        byPlayerAlert.addAction(filterAction)
+        byPlayerAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        present(byPlayerAlert, animated: true, completion: nil)
+        
+    }
+    
     
     
     private func changeSelection(collectionView : UICollectionView, indexPath: IndexPath){

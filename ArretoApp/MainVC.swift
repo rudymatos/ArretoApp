@@ -17,7 +17,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     private var currentBoard : Board?
     private let gameImpl = GameImpl()
     private var viewMode = ViewModeEnum.all
-    
     private var uniqueKeyToShare : String?
     
     override func viewDidLoad() {
@@ -146,6 +145,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
         eventsTV.rowHeight = UITableViewAutomaticDimension
         eventsTV.estimatedRowHeight = 150
     }
+    
     func configureApp(){
         //Check connectivity to show/hide shared button in navigation bar
         currentBoard = gameImpl.getBoard()
@@ -230,13 +230,21 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     }
     
     @IBAction func goBackFromChangeView(segue : UIStoryboardSegue){
+        print("unwind")
         let changeViewVC = segue.source as! ChangeViewModeVC
         let selectedViewMode =  changeViewVC.selectedViewMode
-        if viewMode != selectedViewMode{
-            viewMode = selectedViewMode
+        viewMode = selectedViewMode
+        if viewMode == .byPlayer{
+            if let playerName =  changeViewVC.playerNameToSearch{
+                filterEvents(toMode: viewMode, playerName: playerName)
+            }else{
+                filterEvents(toMode: viewMode, playerName: "")
+            }
+        }else{
             filterEvents(toMode: viewMode)
         }
     }
+    
     
     @IBAction func cancelActionToMainVC(segue: UIStoryboardSegue){
         
