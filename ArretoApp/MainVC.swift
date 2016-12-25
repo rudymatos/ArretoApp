@@ -12,6 +12,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     
     @IBOutlet weak var eventsTV: UITableView!
+    @IBOutlet weak var shareBoardAI: UIActivityIndicatorView!
     
     private var eventList = [Event]()
     private var currentBoard : Board?
@@ -144,6 +145,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     func configureView(){
         eventsTV.rowHeight = UITableViewAutomaticDimension
         eventsTV.estimatedRowHeight = 150
+        shareBoardAI.stopAnimating()
     }
     
     func configureApp(){
@@ -209,8 +211,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     //MARK: - VIEW ACTIONS
     @IBAction func shareOrJoinBoard(_ sender: UIButton) {
-        uniqueKeyToShare = gameImpl.shareBoard(currentBoard: currentBoard!)
-        performSegue(withIdentifier: "addShareBoard", sender: nil)
+        shareBoardAI.startAnimating()
+        gameImpl.shareBoard(currentBoard: currentBoard! , completion: { (key)  in
+            self.uniqueKeyToShare = key
+            self.shareBoardAI.stopAnimating()
+            self.performSegue(withIdentifier: "addShareBoard", sender: nil)
+        })
     }
     
     @IBAction func changeViewMode(_ sender: UIBarButtonItem) {

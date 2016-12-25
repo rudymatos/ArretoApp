@@ -26,24 +26,6 @@ class UserDefaultsHelper {
     func isBoardBeingShared()-> Bool{
        return UserDefaults.standard.bool(forKey: boardBeingShared)
     }
-    
-    func retriveDeviceKey() -> String{
-        guard let currentKey = UserDefaults.standard.value(forKey: keyString) as? String else{
-            return ""
-        }
-        return currentKey
-    }
-    
-    func isThereADeviceKey() -> Bool{
-        guard let _ = UserDefaults.standard.value(forKey: keyString) as? String else{
-            return false
-        }
-        return true
-    }
-    
-    func saveDeviceKey(deviceKey : String) -> String{
-        UserDefaults.standard.set(deviceKey, forKey: keyString)
-        return deviceKey
-    }
+
     
 }

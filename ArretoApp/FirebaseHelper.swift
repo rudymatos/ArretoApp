@@ -19,43 +19,60 @@ class FirebaseHelper {
         databaseRef = FIRDatabase.database().reference()
     }
     
-    func createDeviceId() -> String{
-        let deviceRef = databaseRef!.child("devices").childByAutoId()
-        return deviceRef.key
-    }
-    
-    func createBoard(deviceId : String, board: Board) -> (boardKey: String, boardFBId: String){
-        let boardKey = self.keyGenHelper.generateUniqueKey()
-        let boardIdRef = self.databaseRef!.child("devices").child(deviceId).child("boards").childByAutoId()
-        boardIdRef.setValue(board.generateDictionary(key: boardKey))        
-        return(boardKey, boardIdRef.key)
-    }
-    
-    func inactiveEvent(deviceId: String, currentBoard: Board, event: Event){
-        let currentBoardRef = getBoardRef(deviceId: deviceId, currentBoard: currentBoard)!
-        currentBoardRef.child("events").child(event.firebaseId!).child("active").setValue(false)
-    }
-    
-    func changeEventStatus(deviceId: String, currentBoard: Board, currentEvent: Event, newEventStatus : EventTypeEnum){
-        let currentBoardRef = getBoardRef(deviceId: deviceId, currentBoard: currentBoard)!
-        if newEventStatus == .won{
-            currentBoardRef.child("events").child(currentEvent.firebaseId!).child("winingStreak").setValue(currentEvent.winingStreak)
-        }else if newEventStatus == .lost{
-            currentBoardRef.child("events").child(currentEvent.firebaseId!).child("losingStreak").setValue(currentEvent.losingStreak)
+    func createBoard(board: Board, completion: @escaping ((String, String) -> Void)) {
+        var validBoard = false
+        var keepLooking = true
+        
+        DispatchQueue.global(qos: .default).async {
+            while(!validBoard){
+                if keepLooking {
+                    keepLooking = false
+                    let boardKey = self.keyGenHelper.generateUniqueKey()
+                    self.databaseRef?.child(FirebaseKeysEnum.FBK_BOARD.rawValue)
+                        .queryOrdered(byChild: FirebaseKeysEnum.FBK_KEY.rawValue)
+                        .queryEqual(toValue: boardKey).observeSingleEvent(of: .value, with: { (snapshot) in
+                            if !snapshot.exists() {
+                                validBoard = true
+                                let boardIdRef = self.databaseRef!.child(FirebaseKeysEnum.FBK_BOARD.rawValue).childByAutoId()
+                                boardIdRef.setValue(board.generateDictionary(key: boardKey))
+                                completion(boardKey, boardIdRef.key)
+                            }else{
+                                keepLooking = true
+                            }
+                        }, withCancel: {(error) in
+                            print(error)
+                        })
+                }
+            }
         }
-        currentBoardRef.child("events").child(currentEvent.firebaseId!).child("status").setValue(newEventStatus.rawValue)
+        
     }
-
     
-    func createEventFor(deviceId: String, currentBoard : Board, event: Event) -> String{
-        let currentBoardRef = getBoardRef(deviceId: deviceId, currentBoard: currentBoard)!
-        let eventRefId = currentBoardRef.child("events").childByAutoId()
+    func inactiveEvent(currentBoard: Board, event: Event){
+        let currentBoardRef = getBoardRef(currentBoard: currentBoard)!
+        currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(event.firebaseId!).child(FirebaseKeysEnum.FBK_ACTIVE.rawValue).setValue(false)
+    }
+    
+    func changeEventStatus(currentBoard: Board, currentEvent: Event, newEventStatus : EventTypeEnum){
+        let currentBoardRef = getBoardRef(currentBoard: currentBoard)!
+        if newEventStatus == .won{
+            currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(currentEvent.firebaseId!).child(FirebaseKeysEnum.FBK_WINING_STREAK.rawValue).setValue(currentEvent.winingStreak)
+        }else if newEventStatus == .lost{
+            currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(currentEvent.firebaseId!).child(FirebaseKeysEnum.FBK_LOSING_STREAK.rawValue).setValue(currentEvent.losingStreak)
+        }
+        currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(currentEvent.firebaseId!).child(FirebaseKeysEnum.FBK_STATUS.rawValue).setValue(newEventStatus.rawValue)
+    }
+    
+    
+    func createEventFor(currentBoard : Board, event: Event) -> String{
+        let currentBoardRef = getBoardRef(currentBoard: currentBoard)!
+        let eventRefId = currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).childByAutoId()
         eventRefId.setValue(event.generateDictionary())
         return eventRefId.key
     }
     
-    private func getBoardRef(deviceId: String, currentBoard: Board) -> FIRDatabaseReference?{
-        return databaseRef?.child("devices").child(deviceId).child("boards").child(currentBoard.firebaseId!)
+    private func getBoardRef(currentBoard: Board) -> FIRDatabaseReference?{
+        return databaseRef?.child(FirebaseKeysEnum.FBK_BOARD.rawValue).child(currentBoard.firebaseId!)
     }
     
 }

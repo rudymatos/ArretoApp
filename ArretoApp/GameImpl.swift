@@ -50,7 +50,7 @@ class GameImpl: GameType{
         coreDataHelper.inactiveEvent(currentEvent: currentEvent)
         if userDefaultsHelper.isBoardBeingShared(){
             //check this because the device id implementation should be different
-            firebaseHelper.inactiveEvent(deviceId: userDefaultsHelper.retriveDeviceKey(), currentBoard: currentBoard, event: currentEvent)
+            firebaseHelper.inactiveEvent(currentBoard: currentBoard, event: currentEvent)
         }
     }
     
@@ -84,7 +84,7 @@ class GameImpl: GameType{
             
             if userDefaultsHelper.isBoardBeingShared(){
                 //check this because the device id implementation should be different
-                event.firebaseId = firebaseHelper.createEventFor(deviceId: userDefaultsHelper.retriveDeviceKey(), currentBoard: board, event: event)
+                event.firebaseId = firebaseHelper.createEventFor( currentBoard: board, event: event)
             }
             
             coreDataHelper.saveContext()
@@ -95,7 +95,7 @@ class GameImpl: GameType{
     func changeEventStatus(currentBoard : Board, currentEvent: Event, status : EventTypeEnum){
         coreDataHelper.changeEventStatus(currentEvent: currentEvent, newEventStatus: status)
         if userDefaultsHelper.isBoardBeingShared(){
-            firebaseHelper.changeEventStatus(deviceId: userDefaultsHelper.retriveDeviceKey(), currentBoard: currentBoard, currentEvent: currentEvent, newEventStatus: status)
+            firebaseHelper.changeEventStatus( currentBoard: currentBoard, currentEvent: currentEvent, newEventStatus: status)
         }
         
     }
@@ -114,22 +114,18 @@ class GameImpl: GameType{
         return coreDataHelper.findPlayersByNameLike(name: playerName)
     }
     
-    
-    func shareBoard(currentBoard: Board) -> String{
-        let deviceId = userDefaultsHelper.isThereADeviceKey() ? userDefaultsHelper.retriveDeviceKey() : userDefaultsHelper.saveDeviceKey(deviceKey: firebaseHelper.createDeviceId())
-        let keys = firebaseHelper.createBoard(deviceId: deviceId, board: currentBoard)
-        currentBoard.firebaseId = keys.boardFBId
-        currentBoard.published = true
-        
-        if let events = currentBoard.events{
-            for event in events.allObjects as! [Event] {
-               event.firebaseId = firebaseHelper.createEventFor(deviceId: deviceId, currentBoard: currentBoard, event: event)
+    func shareBoard(currentBoard: Board, completion : @escaping (String) -> Void){
+        firebaseHelper.createBoard(board: currentBoard, completion: { (boardKey , boardFBId) in
+            currentBoard.firebaseId = boardFBId
+            currentBoard.published = true
+            if let events = currentBoard.events{
+                for event in events.allObjects as! [Event] {
+                    event.firebaseId = self.firebaseHelper.createEventFor(currentBoard: currentBoard, event: event)
+                }
             }
-        }
-        
-        coreDataHelper.saveContext()
-        userDefaultsHelper.shareBoard(sharing: true)
-        return keys.boardKey
+            self.coreDataHelper.saveContext()
+            self.userDefaultsHelper.shareBoard(sharing: true)
+            completion(boardKey)
+        })
     }
-    
 }

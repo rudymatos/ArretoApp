@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uDL-Oc-eT7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uDL-Oc-eT7">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Pju-ZW-pom">
-                                    <rect key="frame" x="0.0" y="64" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-J1-O3A">
@@ -436,19 +436,19 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="RUDY E. MATOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hb3-Ib-IhF">
-                                                            <rect key="frame" x="92" y="37" width="120" height="17"/>
+                                                            <rect key="frame" x="92" y="37" width="120" height="17.5"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Perdió" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eL-eR-kxn">
-                                                            <rect key="frame" x="129" y="59" width="47" height="22"/>
+                                                            <rect key="frame" x="128.5" y="59.5" width="47" height="22"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                             <color key="textColor" red="0.68235294120000001" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lleva  #? ganados y #? perdidos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Me-d9-4v4">
-                                                            <rect key="frame" x="68" y="86" width="169" height="17"/>
+                                                            <rect key="frame" x="67.5" y="86.5" width="169" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -476,12 +476,18 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="HNK-Iw-vNw"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="C4w-Be-F8y">
+                                <rect key="frame" x="142" y="266" width="37" height="37"/>
+                                <color key="color" red="0.17262542247772217" green="0.20053154230117798" blue="0.28594523668289185" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Pea-KH-x6x" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="6WG-hJ-CQn"/>
                             <constraint firstItem="Pea-KH-x6x" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ESN-KS-MJ4"/>
+                            <constraint firstItem="C4w-Be-F8y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JaH-FP-0FE"/>
                             <constraint firstAttribute="trailing" secondItem="Pea-KH-x6x" secondAttribute="trailing" id="jpd-r0-Id7"/>
+                            <constraint firstItem="C4w-Be-F8y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nNL-jP-KEt"/>
                             <constraint firstItem="Pea-KH-x6x" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="sTZ-2J-pzx"/>
                         </constraints>
                     </view>
@@ -503,6 +509,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="eventsTV" destination="Pea-KH-x6x" id="N3E-0u-P9A"/>
+                        <outlet property="shareBoardAI" destination="C4w-Be-F8y" id="2Il-Wo-NXY"/>
                         <segue destination="fno-7d-faX" kind="presentation" identifier="addShareBoard" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="ScG-xF-njz"/>
                     </connections>
                 </viewController>

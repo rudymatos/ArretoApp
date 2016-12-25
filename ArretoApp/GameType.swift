@@ -25,7 +25,7 @@ protocol GameType {
     func changeEventStatus(currentBoard : Board, currentEvent: Event, status : EventTypeEnum)
     func inactiveEvent(currentBoard : Board, currentEvent : Event)
     func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?, summaryText : String?) throws
-    func shareBoard(currentBoard : Board) -> String
+    func shareBoard(currentBoard: Board, completion : @escaping (String) -> Void)
     func clearBoard(board : Board)
 
     

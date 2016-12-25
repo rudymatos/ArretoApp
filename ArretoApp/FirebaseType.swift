@@ -10,6 +10,6 @@ import Foundation
 
 protocol FirebaseType{
     
-    func generateDictionary(key: String) -> [String: AnyObject]
+    func generateDictionary(key: String) -> [String: Any]
     
 }
