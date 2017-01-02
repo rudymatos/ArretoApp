@@ -13,6 +13,9 @@ class AWOHTITVC: UITableViewCell {
     @IBOutlet weak var playerNameLBL: UILabel!
     @IBOutlet weak var playerStatusIV: UIImageView!
     @IBOutlet weak var arrivingOrderLBL: UILabel!
+    @IBOutlet weak var cardView: UIView!
+    @IBOutlet var actionButtons: [UIButton]!
+    private let viewHelper = ViewHelper.sharedInstance
     
     var delegate : ActionExecuter?
     var playerInfoDTO : PlayerInfoDTO?{
@@ -22,6 +25,10 @@ class AWOHTITVC: UITableViewCell {
     }
     
     func configureView(){
+        
+        viewHelper.addShadow(toView: cardView)
+        viewHelper.applyRoundedCorner(toButtons: actionButtons)
+        
         if let playerInfoDTO = playerInfoDTO{
             playerNameLBL.text = playerInfoDTO.playerName.uppercased()
             let eventStatus = playerInfoDTO.eventStatus.rawValue

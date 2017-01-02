@@ -12,6 +12,8 @@ class LeftTVC: UITableViewCell {
     
     @IBOutlet weak var playerNameLBL: UILabel!
     @IBOutlet weak var playerInfoLBL: UILabel!
+    @IBOutlet weak var cardView: UIView!
+    private let viewHelper = ViewHelper.sharedInstance
     
     var playerInfoDTO: PlayerInfoDTO?{
         didSet{
@@ -21,6 +23,7 @@ class LeftTVC: UITableViewCell {
     
     
     func configureView(){
+        viewHelper.addShadow(toView: cardView)
         if let playerInfoDTO = playerInfoDTO{
             playerNameLBL.text = playerInfoDTO.playerName.uppercased()
             playerInfoLBL.text = "Ganó \(playerInfoDTO.winingStreak) \(playerInfoDTO.winingStreak == 1 ? "juego" : "juegos") y Perdió \(playerInfoDTO.losingStreak) \(playerInfoDTO.losingStreak == 1 ? "juego" : "juegos")"

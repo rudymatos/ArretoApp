@@ -12,6 +12,9 @@ class PlayingTVC: UITableViewCell {
     
     @IBOutlet weak var playerNameLBL: UILabel!
     @IBOutlet weak var playerWiningStreak: UILabel!
+    @IBOutlet weak var cardView: UIView!
+    @IBOutlet var actionButtons: [UIButton]!
+    private let viewHelper = ViewHelper.sharedInstance
     
     var playerInfoDTO : PlayerInfoDTO?{
         didSet{
@@ -22,6 +25,8 @@ class PlayingTVC: UITableViewCell {
     var delegate : ActionExecuter?
     
     func configureView(){
+        viewHelper.addShadow(toView: cardView)
+        viewHelper.applyRoundedCorner(toButtons: actionButtons)
         if let playerInfoDTO = playerInfoDTO{
             playerNameLBL.text = playerInfoDTO.playerName.uppercased()
             playerWiningStreak.text = "Ha ganado \(playerInfoDTO.winingStreak) juegos"

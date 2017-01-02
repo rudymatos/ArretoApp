@@ -8,17 +8,18 @@
 
 import UIKit
 
-class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ActionExecuter {
-    
+class MainVC: UIViewController, ActionExecuter {
     
     @IBOutlet weak var eventsTV: UITableView!
     @IBOutlet weak var shareBoardAI: UIActivityIndicatorView!
+    @IBOutlet var addPlayerView: UIView!
     
-    private var eventList = [Event]()
+    var eventList = [Event]()
     private var currentBoard : Board?
     private let gameImpl = GameImpl()
     private var viewMode = ViewModeEnum.all
     private var uniqueKeyToShare : String?
+    private let viewHelper = ViewHelper.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +110,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
                     
                     if gameImpl.getAllActiveEventsCountFromBoard(board: currentBoard!) == 0{
                         try! gameImpl.createEvent(status: .summary, board: currentBoard!, player: nil,winLostStreaks: nil, summaryText: generateSummaryText())
+                        handleAddPlayerBarButton(shouldShow: false)
                         filterEvents(toMode: viewMode)
                     }
                 case .temporaryInjured, .waiting, .onHold:
@@ -126,7 +128,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
         for currentEvent in eventList{
             if currentEvent.status == EventTypeEnum.left.rawValue{
                 if let playerName = currentEvent.player?.name{
-                    summaryText += "\(currentEvent.winingStreak)G/\(currentEvent.losingStreak)P : \(playerName.uppercased())\n"
+                    let totalGamesPlayed = currentEvent.winingStreak + currentEvent.losingStreak
+                    summaryText += "\(playerName.uppercased()) - T: \(totalGamesPlayed) - G: \(currentEvent.winingStreak) - P: \(currentEvent.losingStreak)\n"
                 }
             }
         }
@@ -143,9 +146,54 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     //MARK: - VIEW CONFIGURATION
     func configureView(){
+        shareBoardAI.stopAnimating()
         eventsTV.rowHeight = UITableViewAutomaticDimension
         eventsTV.estimatedRowHeight = 150
-        shareBoardAI.stopAnimating()
+        
+        displayElementsBasedOnEventListCount()
+    }
+    
+    private func displayElementsBasedOnEventListCount(){
+        if eventList.count == 0{
+            eventsTV.isHidden = true
+            viewHelper.addShadow(toView: addPlayerView)
+            addPlayerView.alpha = 0
+            self.view.addSubview(addPlayerView)
+            UIView.animate(withDuration: 1.0, animations: {
+                self.addPlayerView.alpha = 1.0
+            })
+            addPlayerView.center = self.view.center
+        }else{
+            eventsTV.isHidden = false
+            if addPlayerView != nil{
+                addPlayerView.removeFromSuperview()
+            }
+        }
+        if eventList.filter({$0.status == EventTypeEnum.summary.rawValue}).count >= 1{
+            handleAddPlayerBarButton(shouldShow: false)
+        }else{
+            handleAddPlayerBarButton()
+        }
+    }
+    
+    private func handleAddPlayerBarButton(shouldShow : Bool = true){
+        if shouldShow {
+            if let addPlayerImage = UIImage(named: "add_player_to_board"){
+                let addPlayer = UIBarButtonItem(image: addPlayerImage, style: .plain, target: self, action: #selector(MainVC.goToAddPlayerSegue))
+                addPlayer.tintColor = UIColor(red: 49/255.0, green: 54/255.0, blue: 71/255.0, alpha: 1.0)
+                if let count = self.navigationItem.rightBarButtonItems?.count, count <= 2{
+                    self.navigationItem.rightBarButtonItems?.append(addPlayer)
+                }
+            }
+        }else{
+            if let count = navigationItem.rightBarButtonItems?.count , count > 2{
+                self.navigationItem.rightBarButtonItems?.remove(at: 0)
+            }
+        }
+    }
+    
+    @objc private func goToAddPlayerSegue(){
+        self.performSegue(withIdentifier: "addPlayerSegue", sender: nil)
     }
     
     func configureApp(){
@@ -233,6 +281,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     @IBAction func goBackFromAddingPlayer(segue : UIStoryboardSegue){
         filterEvents(toMode: viewMode)
+        displayElementsBasedOnEventListCount()
     }
     
     @IBAction func goBackFromChangeView(segue : UIStoryboardSegue){
@@ -256,23 +305,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
         
     }
     
-    @IBAction func deleteBoardDidTouch(_ sender: UIButton) {
-        //First create alert and notify the user
-        
-        let deleteBoardAC = UIAlertController(title: "Borrar Pizarra", message: "Desea borrar la pizarra? Todas las entradas seran eliminadas", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "Si, estoy seguro!", style: .destructive, handler: { _ in
-            self.gameImpl.clearBoard(board: self.currentBoard!)
-            self.configureApp()
-            DispatchQueue.main.async {
-                self.eventsTV.reloadData()
-            }})
-        deleteBoardAC.addAction(cancelAction)
-        deleteBoardAC.addAction(deleteAction)
-        
-        present(deleteBoardAC, animated: true, completion: nil)
-        
-    }
+    
+    
+}
+
+extension MainVC: UITableViewDelegate, UITableViewDataSource{
     
     //MARK: - TableView Methods
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -281,6 +318,22 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Acti
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventList.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let currentEvent = eventList[indexPath.row]
+        if let eventStatus = currentEvent.status, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus){
+            switch  eventTypeEnum {
+            case .won, .lost, .playing, .left:
+                return 75
+            case .arrived, .waiting, .onHold, .temporaryInjured:
+                return 75
+            case .summary:
+                return CGFloat(75 + (eventList.filter({$0.status == EventTypeEnum.summary.rawValue}).count * 30))
+            }
+        }else{
+            return 150
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

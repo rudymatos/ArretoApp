@@ -11,7 +11,8 @@ import UIKit
 class SummaryTVC: UITableViewCell {
   
     @IBOutlet weak var boardSummaryLBL: UILabel!
-    
+    @IBOutlet weak var cardView: UIView!
+    private let viewHelper = ViewHelper.sharedInstance
     var currentEvent : Event?{
         didSet{
             configureView()
@@ -19,6 +20,7 @@ class SummaryTVC: UITableViewCell {
     }
     
     func configureView(){
+        viewHelper.addShadow(toView: cardView)
         if let currentEvent = currentEvent{
                boardSummaryLBL.text = currentEvent.summaryText
         }
