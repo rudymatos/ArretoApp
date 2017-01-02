@@ -13,6 +13,8 @@ class MainVC: UIViewController, ActionExecuter {
     @IBOutlet weak var eventsTV: UITableView!
     @IBOutlet weak var shareBoardAI: UIActivityIndicatorView!
     @IBOutlet var addPlayerView: UIView!
+    @IBOutlet var helpView: UIView!
+    @IBOutlet weak var blurEffect: UIVisualEffectView!
     
     var eventList = [Event]()
     private var currentBoard : Board?
@@ -146,10 +148,12 @@ class MainVC: UIViewController, ActionExecuter {
     
     //MARK: - VIEW CONFIGURATION
     func configureView(){
+        blurEffect.effect = nil
+        blurEffect.isHidden = true
         shareBoardAI.stopAnimating()
         eventsTV.rowHeight = UITableViewAutomaticDimension
         eventsTV.estimatedRowHeight = 150
-        
+        viewHelper.addShadow(toView: helpView)
         displayElementsBasedOnEventListCount()
     }
     
@@ -181,13 +185,13 @@ class MainVC: UIViewController, ActionExecuter {
             if let addPlayerImage = UIImage(named: "add_player_to_board"){
                 let addPlayer = UIBarButtonItem(image: addPlayerImage, style: .plain, target: self, action: #selector(MainVC.goToAddPlayerSegue))
                 addPlayer.tintColor = UIColor(red: 49/255.0, green: 54/255.0, blue: 71/255.0, alpha: 1.0)
-                if let count = self.navigationItem.rightBarButtonItems?.count, count <= 2{
+                if let count = self.navigationItem.rightBarButtonItems?.count, count <= 3{
                     self.navigationItem.rightBarButtonItems?.append(addPlayer)
                 }
             }
         }else{
-            if let count = navigationItem.rightBarButtonItems?.count , count > 2{
-                self.navigationItem.rightBarButtonItems?.remove(at: 0)
+            if let count = navigationItem.rightBarButtonItems?.count , count > 3{
+                self.navigationItem.rightBarButtonItems?.remove(at: count - 1)
             }
         }
     }
@@ -300,6 +304,34 @@ class MainVC: UIViewController, ActionExecuter {
         }
     }
     
+    @IBAction func showHelpView(_ sender: UIButton) {
+        helpView.alpha = 0
+        helpView.center = self.view.center
+        self.view.addSubview(helpView)
+        self.blurEffect.isHidden = false
+        helpView.transform = CGAffineTransform(scaleX: 1.5 , y: 1.5)
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: [.curveEaseIn], animations: {
+            self.helpView.alpha = 1
+            self.helpView.transform = CGAffineTransform.identity
+            
+            self.blurEffect.effect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+        }, completion: nil)
+        
+    }
+    
+    @IBAction func dismissHelpView(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: [.curveEaseIn], animations: {
+            self.helpView.transform = CGAffineTransform(scaleX: 1.1 , y: 1.1)
+        }, completion: { (value) in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.helpView.alpha = 0
+                self.blurEffect.effect = nil
+                self.blurEffect.isHidden = true
+            }, completion: { (value) in
+                self.helpView.removeFromSuperview()
+            })
+        })
+    }
     
     @IBAction func cancelActionToMainVC(segue: UIStoryboardSegue){
         
