@@ -68,7 +68,7 @@ class ChangeViewModeVC: UIViewController, UICollectionViewDelegate, UICollection
         
         selectedIndex = indexPath
         let selectedCell = collectionView.cellForItem(at: indexPath) as? ViewModeCVC
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             selectedCell?.changeSelectionColor()
         })
         selectedViewMode = ViewModeEnum.allValues[indexPath.item]

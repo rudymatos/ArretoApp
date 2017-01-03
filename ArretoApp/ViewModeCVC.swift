@@ -13,6 +13,8 @@ class ViewModeCVC: UICollectionViewCell {
     
     @IBOutlet weak var viewModeImage: UIImageView?
     @IBOutlet weak var viewModeLabel: UILabel?
+    @IBOutlet weak var cardView: UIView!
+    private let viewHelper = ViewHelper.sharedInstance
     
     var isCellSelected = false
     var currentViewMode : ViewModeEnum?{
@@ -23,10 +25,11 @@ class ViewModeCVC: UICollectionViewCell {
     
     func changeSelectionColor(){
         isCellSelected = !isCellSelected
-        backgroundColor = isCellSelected ?  UIColor.brown : UIColor.clear
+        cardView.backgroundColor = isCellSelected ?  ColorUtil.LOST_COLOR : UIColor.white
     }
     
     func configureView(){
+        viewHelper.addShadow(toView: cardView, withBackGroundColor: UIColor.white)
         if let currentViewMode = currentViewMode{
             viewModeLabel?.text = currentViewMode.rawValue
             viewModeImage?.image = UIImage(named: currentViewMode.getImage())

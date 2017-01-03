@@ -17,12 +17,12 @@ enum ViewModeEnum: String {
     case left = "Se Fue"
     case playing = "Jugando"
     case onHold = "Gano 2"
-    case waiting = "Esperando"
+    case waiting = "Espera"
     case temporaryInjured = "Lesionado"
     case lost = "Perdio"
     case won = "Gano"
     case summary = "Resumen"
-    case byPlayer = "Por Jugador"
+    case byPlayer = "Jugador"
     
     
     static let allValues = [all,activeOnly, inactiveOnly, arrived, left, playing, onHold, waiting, temporaryInjured, lost, won, summary, byPlayer]
