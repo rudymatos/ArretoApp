@@ -21,6 +21,7 @@
 		F5221B051DDF25880017BBBD /* FirebaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5221B041DDF25880017BBBD /* FirebaseType.swift */; };
 		F5221B071DE10A0C0017BBBD /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5221B061DE10A0C0017BBBD /* UserDefaultsHelper.swift */; };
 		F58499AB1DBEF1610052B752 /* PlayerNameTCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58499AA1DBEF1610052B752 /* PlayerNameTCV.swift */; };
+		F5864C6C1E1BC19E00538AC3 /* MainVCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5864C6B1E1BC19E00538AC3 /* MainVCHandler.swift */; };
 		F594C7011DD16EA400AB8B3A /* SummaryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F594C7001DD16EA400AB8B3A /* SummaryTVC.swift */; };
 		F596422A1DC980B3001FA9A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F59642291DC980B3001FA9A9 /* GoogleService-Info.plist */; };
 		F596422C1DC980DD001FA9A9 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F596422B1DC980DD001FA9A9 /* FirebaseHelper.swift */; };
@@ -72,6 +73,7 @@
 		F5221B061DE10A0C0017BBBD /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		F58499AA1DBEF1610052B752 /* PlayerNameTCV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNameTCV.swift; sourceTree = "<group>"; };
 		F58499AC1DC4FBC00052B752 /* ArretoApp v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ArretoApp v1.2.xcdatamodel"; sourceTree = "<group>"; };
+		F5864C6B1E1BC19E00538AC3 /* MainVCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVCHandler.swift; sourceTree = "<group>"; };
 		F594C7001DD16EA400AB8B3A /* SummaryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryTVC.swift; sourceTree = "<group>"; };
 		F59642291DC980B3001FA9A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F596422B1DC980DD001FA9A9 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				F50FE61A1DC996E200029A11 /* KeyGenerator.swift */,
 				F50FE6201DC9B35900029A11 /* ActionExecuter.swift */,
 				F5221B041DDF25880017BBBD /* FirebaseType.swift */,
+				F5864C6B1E1BC19E00538AC3 /* MainVCHandler.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				F594C7011DD16EA400AB8B3A /* SummaryTVC.swift in Sources */,
 				F50FE6231DC9B5DD00029A11 /* PlayerInfoDTO.swift in Sources */,
 				F5D24FBD1E1AF72500219749 /* MainVCExtension.swift in Sources */,
+				F5864C6C1E1BC19E00538AC3 /* MainVCHandler.swift in Sources */,
 				F5221B051DDF25880017BBBD /* FirebaseType.swift in Sources */,
 				F5DA102D1E10272C0026E414 /* FirebaseKeysEnum.swift in Sources */,
 				F5DA104D1E14C0590026E414 /* DeleteBoardVC.swift in Sources */,
