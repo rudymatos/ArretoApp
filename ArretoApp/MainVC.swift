@@ -29,7 +29,7 @@ class MainVC: UIViewController {
     }
     
     
-
+    
     //MARK: - VIEW CONFIGURATION
     func configureView(){
         shareBoardAI.stopAnimating()
@@ -45,7 +45,7 @@ class MainVC: UIViewController {
         filterEvents(toMode: viewMode)
         
         if let deleteTabVC = self.tabBarController?.viewControllers?[1] as? DeleteBoardVC{
-           deleteTabVC.delegate = self
+            deleteTabVC.delegate = self
         }
         
     }
@@ -66,25 +66,15 @@ class MainVC: UIViewController {
                 addPlayerView.removeFromSuperview()
             }
         }
-        if eventList.filter({$0.status == EventTypeEnum.summary.rawValue}).count >= 1{
-            handleAddPlayerBarButton(shouldShow: false)
-        }else{
-            handleAddPlayerBarButton()
-        }
+        handleAddPlayerBarButton()
     }
     
-    func handleAddPlayerBarButton(shouldShow : Bool = true){
-        if shouldShow {
-            if let addPlayerImage = UIImage(named: "add_player_to_board"){
-                let addPlayer = UIBarButtonItem(image: addPlayerImage, style: .plain, target: self, action: #selector(MainVC.goToAddPlayerSegue))
-                addPlayer.tintColor = UIColor(red: 49/255.0, green: 54/255.0, blue: 71/255.0, alpha: 1.0)
-                if let count = self.navigationItem.rightBarButtonItems?.count, count <= 3{
-                    self.navigationItem.rightBarButtonItems?.append(addPlayer)
-                }
-            }
-        }else{
-            if let count = navigationItem.rightBarButtonItems?.count , count > 3{
-                self.navigationItem.rightBarButtonItems?.remove(at: count - 1)
+    func handleAddPlayerBarButton(){
+        if let addPlayerImage = UIImage(named: "add_player_to_board"){
+            let addPlayer = UIBarButtonItem(image: addPlayerImage, style: .plain, target: self, action: #selector(MainVC.goToAddPlayerSegue))
+            addPlayer.tintColor = UIColor(red: 49/255.0, green: 54/255.0, blue: 71/255.0, alpha: 1.0)
+            if let count = self.navigationItem.rightBarButtonItems?.count, count <= 2{
+                self.navigationItem.rightBarButtonItems?.append(addPlayer)
             }
         }
     }
@@ -188,17 +178,6 @@ class MainVC: UIViewController {
         }else{
             filterEvents(toMode: viewMode)
         }
-    }
-    
-    @IBAction func showHelpView(_ sender: UIButton) {
-        helpView.alpha = 0
-        helpView.center = self.view.center
-        self.view.addSubview(helpView)
-        helpView.transform = CGAffineTransform(scaleX: 1.5 , y: 1.5)
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: [.curveEaseIn], animations: {
-            self.helpView.alpha = 1
-            self.helpView.transform = CGAffineTransform.identity
-        }, completion: nil)
     }
     
     @IBAction func dismissHelpView(_ sender: UIButton) {

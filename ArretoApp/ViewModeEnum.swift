@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 enum ViewModeEnum: String {
+    
     case all = "Todos"
     case activeOnly = "Activos"
     case inactiveOnly = "Inactivos"
@@ -66,22 +67,8 @@ enum ViewModeEnum: String {
         switch self {
         case .arrived:
             return EventTypeEnum.arrived
-        case .left:
-            return EventTypeEnum.left
         case .lost:
             return EventTypeEnum.lost
-        case .onHold:
-            return EventTypeEnum.onHold
-        case .playing:
-            return EventTypeEnum.playing
-        case .summary:
-            return EventTypeEnum.summary
-        case .temporaryInjured:
-            return EventTypeEnum.temporaryInjured
-        case .waiting:
-            return EventTypeEnum.waiting
-        case .won:
-            return EventTypeEnum.won
         default:
             return nil
         }

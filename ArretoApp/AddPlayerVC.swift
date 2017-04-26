@@ -62,30 +62,25 @@ class AddPlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     @IBAction func addPlayerDidTouch(_ sender: UIButton) {
-        
         if selectedPlayer == nil{
-            
             guard let playerName = playerSearchBar.text else{
                 //Show message name is invalid
                 return
             }
-            
             if playerSearchBar.text == nil || playerName.characters.count <= Player.minPlayerNameLength{
                 //Show message name is invalid
                 return
             }
-            
             do{
                 selectedPlayer = try gameImpl.addPlayer(name: playerName)
             }catch{
                 
             }
-            
         }
-        
         if let selectedPlayer = selectedPlayer{
             do{
                 try gameImpl.createEvent(status: EventTypeEnum.arrived, board: selectedBoard!, player: selectedPlayer, winLostStreaks: (0,0), summaryText: nil)
+                try gameImpl.createSeparator(currentBoard: selectedBoard!)
                 performSegue(withIdentifier: "backToMainScreenSegue", sender: nil)
             }catch ArretoExceptions.ArrivingEventAlreadyExists{
                 //show message
@@ -93,7 +88,6 @@ class AddPlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                 //show message
             }
         }
-        
     }
     
     //MARK: - SearchBard Delegate Methods

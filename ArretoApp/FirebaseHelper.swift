@@ -55,11 +55,11 @@ class FirebaseHelper {
     
     func changeEventStatus(currentBoard: Board, currentEvent: Event, newEventStatus : EventTypeEnum){
         let currentBoardRef = getBoardRef(currentBoard: currentBoard)!
-        if newEventStatus == .won{
-            currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(currentEvent.firebaseId!).child(FirebaseKeysEnum.FBK_WINING_STREAK.rawValue).setValue(currentEvent.winingStreak)
-        }else if newEventStatus == .lost{
-            currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(currentEvent.firebaseId!).child(FirebaseKeysEnum.FBK_LOSING_STREAK.rawValue).setValue(currentEvent.losingStreak)
-        }
+//        if newEventStatus == .won{
+//            currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(currentEvent.firebaseId!).child(FirebaseKeysEnum.FBK_WINING_STREAK.rawValue).setValue(currentEvent.winingStreak)
+//        }else if newEventStatus == .lost{
+//            currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(currentEvent.firebaseId!).child(FirebaseKeysEnum.FBK_LOSING_STREAK.rawValue).setValue(currentEvent.losingStreak)
+//        }
         currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(currentEvent.firebaseId!).child(FirebaseKeysEnum.FBK_STATUS.rawValue).setValue(newEventStatus.rawValue)
     }
     

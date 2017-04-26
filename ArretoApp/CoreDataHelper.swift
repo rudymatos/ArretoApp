@@ -78,11 +78,11 @@ class CoreDataHelper{
     
     func changeEventStatus(currentEvent: Event, newEventStatus : EventTypeEnum){
         currentEvent.status = newEventStatus.rawValue
-        if newEventStatus == .won{
-            currentEvent.winingStreak += 1
-        }else if newEventStatus == .lost{
-            currentEvent.losingStreak += 1
-        }
+//        if newEventStatus == .won{
+//            currentEvent.winingStreak += 1
+//        }else if newEventStatus == .lost{
+//            currentEvent.losingStreak += 1
+//        }
         saveContext()
     }
     
@@ -229,11 +229,11 @@ class CoreDataHelper{
                     var losingStreak = 0
                     
                     for currentEvent in results{
-                        if currentEvent.status == EventTypeEnum.won.rawValue{
-                            winingStreak += 1
-                        }else if currentEvent.status == EventTypeEnum.lost.rawValue{
-                            losingStreak += 1
-                        }
+//                        if currentEvent.status == EventTypeEnum.won.rawValue{
+//                            winingStreak += 1
+//                        }else if currentEvent.status == EventTypeEnum.lost.rawValue{
+//                            losingStreak += 1
+//                        }
                     }
                     streaks.wining = winingStreak
                     streaks.losing = losingStreak

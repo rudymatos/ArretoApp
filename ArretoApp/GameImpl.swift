@@ -14,9 +14,6 @@ class GameImpl: GameType{
     private let firebaseHelper = FirebaseHelper.sharedInstance
     private let userDefaultsHelper = UserDefaultsHelper.sharedInstance
     
-    internal let maxNumberOfActiveEvents = 10
-    
-    
     func getBoard() -> Board {
         return coreDataHelper.isThereAnActiveBoard() ? coreDataHelper.getActiveBoard() : coreDataHelper.createBoard()
     }
@@ -54,6 +51,13 @@ class GameImpl: GameType{
         }
     }
     
+    func createSeparator(currentBoard: Board) throws{
+        let allEventsCount = coreDataHelper.getAllEventsFromBoard(board: currentBoard).filter({$0.status != EventTypeEnum.separator.rawValue}).count
+        if allEventsCount % 5 == 0 && allEventsCount >= 10{
+            try createEvent(status: .separator, board: currentBoard, player: nil, winLostStreaks: nil, summaryText: nil)
+        }
+    }
+    
     func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?, summaryText : String?) throws {
         if let player = player , status == EventTypeEnum.arrived && coreDataHelper.doesArrivingEventWasAlreadyCreated(player: player, activeBoard: board){
             throw ArretoExceptions.ArrivingEventAlreadyExists
@@ -69,26 +73,18 @@ class GameImpl: GameType{
             
             event.status = status.rawValue
             event.board = board
+            event.player = player
+            
             if let winLostStreaks = winLostStreaks{
                 event.winingStreak = Int16(winLostStreaks.winStreak)
                 event.losingStreak = Int16(winLostStreaks.lostStreak)
-            }
-            
-            if status != EventTypeEnum.summary{
-                event.player = player
-            }
-            
-            if let summaryText = summaryText , status == EventTypeEnum.summary{
-                event.summaryText = summaryText
             }
             
             if userDefaultsHelper.isBoardBeingShared(){
                 //check this because the device id implementation should be different
                 event.firebaseId = firebaseHelper.createEventFor( currentBoard: board, event: event)
             }
-            
             coreDataHelper.saveContext()
-            
         }
     }
     
@@ -107,7 +103,7 @@ class GameImpl: GameType{
     func clearBoard(board: Board) {
         coreDataHelper.changeBoardStatusToClose(board: board)
         userDefaultsHelper.shareBoard(sharing: false)
-
+        
     }
     
     func findPlayers(byName playerName: String) -> [Player]? {

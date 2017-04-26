@@ -11,36 +11,17 @@ import Foundation
 enum EventTypeEnum: String {
     
     case arrived = "Arrived"
-    case left = "Left"
-    case playing  = "Playing"
-    case onHold = "On Hold"
-    case waiting = "Waiting"
-    case temporaryInjured = "Temporary Injured"
     case lost = "Lost"
-    case won = "Won"
-    case summary = "Summary"
-    
+    case separator = "Separator"
     
     func getSpanish() -> String{
         switch  self {
         case .arrived:
             return "Llegó"
-        case .left:
-            return "Se Fue"
-        case .playing:
-            return "Jugando"
-        case .onHold:
-            return "En Espera (Ganó 2)"
-        case .waiting:
-            return "En Espera"
-        case .temporaryInjured:
-            return "Lesionado"
         case .lost:
             return "Perdió"
-        case .won:
-            return "Ganó"
-        case .summary:
-            return "Resumen"
+        case .separator:
+            return "Separador"
         }
     }
 }

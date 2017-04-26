@@ -41,7 +41,7 @@ class PlayingTVC: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     @IBAction func showMoreOptions(_ sender: UIButton) {
-        delegate?.handleActionSheet(currentCell: self)
+//        delegate?.handleActionSheet(currentCell: self)
     }
     
     @IBAction func playerWon(_ sender: UIButton) {
@@ -52,7 +52,7 @@ class PlayingTVC: UITableViewCell {
     }
     
     func changeStatusFromPlayingToWinOrLost(win: Bool) {
-        delegate?.changeStatusFromPlayingToWinOrLost(currentCell: self, win: win)
+//        delegate?.changeStatusFromPlayingToWinOrLost(currentCell: self, win: win)
     }
     
 }
