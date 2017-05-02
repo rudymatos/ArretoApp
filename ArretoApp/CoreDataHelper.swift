@@ -71,8 +71,8 @@ class CoreDataHelper{
     }
     
     //MARK: Events Methods
-    func inactiveEvent(currentEvent: Event){
-        currentEvent.active = false
+    func switchEventActiveStatus(currentEvent: Event){
+        currentEvent.active = !currentEvent.active
         saveContext()
     }
     
@@ -101,7 +101,7 @@ class CoreDataHelper{
     func getNextArrivingEventNumber(activeBoard board: Board) -> Int{
         var nextNumber = 0
         let request :  NSFetchRequest<Event> = Event.fetchRequest()
-        request.predicate = NSPredicate(format: "board.createdOn = %@ and status = %@", board.createdOn!, EventTypeEnum.arrived.rawValue)
+        request.predicate = NSPredicate(format: "board.createdOn = %@ and status = %@", board.createdOn!, EventTypeEnum.onBoard.rawValue)
         do{
             nextNumber = try managedObjectContext.count(for: request) + 1
         }catch{
@@ -114,7 +114,7 @@ class CoreDataHelper{
     func doesArrivingEventWasAlreadyCreated(player : Player, activeBoard board: Board) -> Bool {
         var doesArrivingEventWasAlreadyCreated = false
         let request : NSFetchRequest<Event> = Event.fetchRequest()
-        request.predicate = NSPredicate(format: "status = %@ and player = %@ and board = %@", EventTypeEnum.arrived.rawValue, player, board)
+        request.predicate = NSPredicate(format: "status = %@ and player = %@ and board = %@", EventTypeEnum.onBoard.rawValue, player, board)
         request.fetchLimit = 1
         do{
             doesArrivingEventWasAlreadyCreated = try managedObjectContext.fetch(request).count > 0

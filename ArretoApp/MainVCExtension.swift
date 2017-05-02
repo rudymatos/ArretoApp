@@ -15,7 +15,10 @@ extension MainVC : ActionExecuter{
     
     func changeEventStatus(currentCell: UITableViewCell) {
         if let currentIndex = eventsTV.indexPath(for: currentCell){
-            createLostEvent(currentIndex:  currentIndex)
+            let currentEvent = eventList[currentIndex.row]
+            if currentEvent.active {
+                createLostEvent(currentEvent: currentEvent)
+            }
         }
     }
     
@@ -23,13 +26,20 @@ extension MainVC : ActionExecuter{
         //redo from history
     }
     
-    private func createLostEvent(currentIndex : IndexPath){
-        let currentEvent = eventList[currentIndex.row]
+    private func createLostEvent(currentEvent: Event){
         if let currentPlayer = currentEvent.player{
-            gameImpl.inactiveEvent(currentBoard: currentBoard!, currentEvent: currentEvent)
+            
             //calculate win/lost streak
             //Create history record
-            try! gameImpl.createEvent(status: .separator, board: currentBoard!, player: currentPlayer,winLostStreaks: nil, summaryText: nil)
+            gameImpl.switchEventActiveStatus(currentBoard: currentBoard!, currentEvent: currentEvent)
+            gameImpl.changeEventStatus(currentBoard: currentBoard!, currentEvent: currentEvent, status: .lost)
+            
+            
+            //catch exceptions
+            try! gameImpl.createEvent(status: .waiting, board: currentBoard!, player: currentPlayer,winLostStreaks: nil, summaryText: nil)
+            try! gameImpl.createSeparator(currentBoard: currentBoard!)
+            
+            gameImpl.processEventsToCalculate(currentBoard: currentBoard!)
             filterEvents(toMode: viewMode)
             eventsTV.reloadData()
             //animate incoming cell with fade in effect
@@ -56,9 +66,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource{
             switch  eventTypeEnum {
             case .separator:
                 return 30
-            case .lost:
-                return 75
-            case .arrived:
+            default:
                 return 65
             }
         }else{
@@ -72,20 +80,16 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource{
         var playerInfoDTO : PlayerInfoDTO? = nil
         if let eventStatus = currentEvent.status, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus){
             if let playerName = currentEvent.player?.name{
-                playerInfoDTO = PlayerInfoDTO(playerName: playerName, arrivingOrder: Int(currentEvent.arrivingOrder), listOrder: Int(currentEvent.listOrder), eventStatus: eventTypeEnum, winingStreak: Int(currentEvent.winingStreak), losingStreak: Int(currentEvent.losingStreak))
+                playerInfoDTO = PlayerInfoDTO(playerName: playerName, arrivingOrder: Int(currentEvent.arrivingOrder), listOrder: Int(currentEvent.listOrder), eventStatus: eventTypeEnum, winingStreak: Int(currentEvent.winingStreak), losingStreak: Int(currentEvent.losingStreak), active : currentEvent.active)
             }
             switch eventTypeEnum{
             case .separator:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "separatorCell", for: indexPath)
                 return cell
-            case .arrived:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "arrivingCell", for: indexPath) as! ArrivingTVC
+            default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTVC
                 cell.playerInfoDTO = playerInfoDTO
                 cell.delegate = self
-                return cell
-            case .lost:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "lostCell", for: indexPath) as! LostTVC
-                cell.playerInfoDTO = playerInfoDTO
                 return cell
             }
         }else{

@@ -24,19 +24,12 @@ class LostTVC: UITableViewCell {
     
     
     func configureView(){
-        
-        var backgroundColor = UIColor.black
         if let playerInfoDTO = playerInfoDTO{
-            
-            playingIV.image = UIImage(named: "played_won")
-            playingStatusLBL.text = "GANÓ"
-            playingStatusLBL.textColor = ColorUtil.WON_COLOR
-            backgroundColor = UIColor(red: 150/255.0, green: 154/255.0, blue: 168/255.0, alpha: 1.0)
-            
-            playingSummaryLBL.text = "Lleva \(playerInfoDTO.winingStreak) \(playerInfoDTO.winingStreak == 1 ? "ganado" : "ganados") y \(playerInfoDTO.losingStreak) \(playerInfoDTO.losingStreak == 1 ? "perdido" : "perdidos")"
+            playingIV.image = UIImage(named: "played_lost")
+            playingStatusLBL.text = playerInfoDTO.eventStatus.getSpanish().uppercased()
+            playingStatusLBL.textColor = ColorUtil.LOST_COLOR
             playingPlayerNameLBL.text = playerInfoDTO.playerName.uppercased()
-            self.backgroundColor = UIColor.white
-            viewHelper.addShadow(toView: cardView, withBackGroundColor: backgroundColor)
+            viewHelper.addShadow(toView: cardView, withBackGroundColor: UIColor.gray.withAlphaComponent(0.3))
         }
     }
     

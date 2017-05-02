@@ -20,6 +20,7 @@ class MainVC: UIViewController {
     let gameImpl = GameImpl()
     var viewMode = ViewModeEnum.all
     private var uniqueKeyToShare : String?
+    private let userDefaultsHelper = UserDefaultsHelper.sharedInstance
     private let viewHelper = ViewHelper.sharedInstance
     
     override func viewDidLoad() {
@@ -53,7 +54,7 @@ class MainVC: UIViewController {
     private func displayElementsBasedOnEventListCount(){
         if eventList.count == 0{
             eventsTV.isHidden = true
-            viewHelper.addShadow(toView: addPlayerView)
+            viewHelper.addShadow(toView: addPlayerView, withBackGroundColor: ColorUtil.WHITE_COLOR)
             addPlayerView.alpha = 0
             self.view.addSubview(addPlayerView)
             UIView.animate(withDuration: 1.0, animations: {
@@ -73,10 +74,11 @@ class MainVC: UIViewController {
         if let addPlayerImage = UIImage(named: "add_player_to_board"){
             let addPlayer = UIBarButtonItem(image: addPlayerImage, style: .plain, target: self, action: #selector(MainVC.goToAddPlayerSegue))
             addPlayer.tintColor = UIColor(red: 49/255.0, green: 54/255.0, blue: 71/255.0, alpha: 1.0)
-            if let count = self.navigationItem.rightBarButtonItems?.count, count <= 2{
+            if let count = self.navigationItem.rightBarButtonItems?.count, count <= 3{
                 self.navigationItem.rightBarButtonItems?.append(addPlayer)
             }
         }
+        self.navigationItem.rightBarButtonItems?[0].title = "\(userDefaultsHelper.getArrivingListCount())"
     }
     
     //MARK: - RELOAD DATA
@@ -113,9 +115,11 @@ class MainVC: UIViewController {
         
         DispatchQueue.main.async {
             self.eventsTV.reloadData()
-            if self.eventList.count > 0{
-                self.goToRow(currentIndex: [IndexPath(row: self.eventList.count-1, section: 0)].first!)
-            }
+            
+            //TODO: JUST SCROLL WHEN ADDING NEW PLAYER
+//            if self.eventList.count > 0{
+//                self.goToRow(currentIndex: [IndexPath(row: self.eventList.count-1, section: 0)].first!)
+//            }
         }
         
     }
@@ -129,7 +133,7 @@ class MainVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addPlayerSegue"{
             let destination = segue.destination as! AddPlayerVC
-            destination.selectedBoard = currentBoard
+            destination.currentBoard = currentBoard
         }else if segue.identifier == "addShareBoard"{
             let destination = segue.destination as! AddShareBoardVC
             destination.uniqueKeyToShare = uniqueKeyToShare
@@ -161,6 +165,7 @@ class MainVC: UIViewController {
     }
     
     @IBAction func goBackFromAddingPlayer(segue : UIStoryboardSegue){
+        self.navigationItem.rightBarButtonItems?[0].title = "\(userDefaultsHelper.getArrivingListCount())"
         filterEvents(toMode: viewMode)
         displayElementsBasedOnEventListCount()
     }

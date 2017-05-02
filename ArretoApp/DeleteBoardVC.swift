@@ -17,6 +17,7 @@ class DeleteBoardVC: UIViewController {
     private let gameImpl = GameImpl()
     private var currentBoard : Board?
     var delegate : MainVCHandler?
+    private let userDefaultsHelper = UserDefaultsHelper.sharedInstance
     private let viewHelper = ViewHelper.sharedInstance
     
     override func viewDidLoad() {
@@ -46,6 +47,8 @@ class DeleteBoardVC: UIViewController {
         let deleteBoardAC = UIAlertController(title: "Borrar Pizarra", message: "Desea borrar la pizarra? Todas las entradas seran eliminadas", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Si, estoy seguro!", style: .destructive, handler: { _ in
+            self.userDefaultsHelper.saveCurrentActiveIndex(activeIndex: 0)
+            self.userDefaultsHelper.cleanUpArrivingListCount()
             self.gameImpl.clearBoard(board: self.currentBoard!)
             self.configureApp()
             self.delegate?.removeAllRecordsHandler()

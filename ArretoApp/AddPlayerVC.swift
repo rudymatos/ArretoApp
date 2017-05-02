@@ -13,7 +13,8 @@ class AddPlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     private let gameImpl = GameImpl()
     private var filteredPlayerList : [Player]!
     private var selectedPlayer : Player?
-    var selectedBoard : Board?
+    private let userDefaultsHelper = UserDefaultsHelper.sharedInstance
+    var currentBoard : Board?
     
     //MARK: - Configuration Methods
     override func viewDidLoad() {
@@ -23,8 +24,8 @@ class AddPlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func configureViewData(){
-        if let selectedBoard = selectedBoard{
-            filteredPlayerList = gameImpl.getAllPlayerWithNoEvents(board: selectedBoard) ?? [Player]()
+        if let currentBoard = currentBoard{
+            filteredPlayerList = gameImpl.getAllPlayerWithNoEvents(board: currentBoard) ?? [Player]()
         }
     }
     
@@ -39,6 +40,8 @@ class AddPlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         addPlayerView.layer.shadowOpacity = 1
         addPlayerView.layer.shadowOffset = CGSize.zero
         addPlayerView.layer.shadowRadius = 10
+        
+        
         
     }
     
@@ -79,8 +82,10 @@ class AddPlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
         if let selectedPlayer = selectedPlayer{
             do{
-                try gameImpl.createEvent(status: EventTypeEnum.arrived, board: selectedBoard!, player: selectedPlayer, winLostStreaks: (0,0), summaryText: nil)
-                try gameImpl.createSeparator(currentBoard: selectedBoard!)
+                try gameImpl.createEvent(status: EventTypeEnum.onBoard, board: currentBoard!, player: selectedPlayer, winLostStreaks: (0,0), summaryText: nil)
+                try gameImpl.createSeparator(currentBoard: currentBoard!)
+                gameImpl.processEventsToCalculate(currentBoard: currentBoard!)
+                userDefaultsHelper.incrementArrivingListCount()
                 performSegue(withIdentifier: "backToMainScreenSegue", sender: nil)
             }catch ArretoExceptions.ArrivingEventAlreadyExists{
                 //show message

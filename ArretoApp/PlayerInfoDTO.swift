@@ -15,4 +15,5 @@ struct PlayerInfoDTO {
     let eventStatus : EventTypeEnum
     let winingStreak : Int
     let losingStreak: Int
+    let active : Bool
 }

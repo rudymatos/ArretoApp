@@ -48,9 +48,9 @@ class FirebaseHelper {
         
     }
     
-    func inactiveEvent(currentBoard: Board, event: Event){
+    func updateEventActiveStatus(currentBoard: Board, event: Event){
         let currentBoardRef = getBoardRef(currentBoard: currentBoard)!
-        currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(event.firebaseId!).child(FirebaseKeysEnum.FBK_ACTIVE.rawValue).setValue(false)
+        currentBoardRef.child(FirebaseKeysEnum.FBK_EVENTS.rawValue).child(event.firebaseId!).child(FirebaseKeysEnum.FBK_ACTIVE.rawValue).setValue(event.active)
     }
     
     func changeEventStatus(currentBoard: Board, currentEvent: Event, newEventStatus : EventTypeEnum){

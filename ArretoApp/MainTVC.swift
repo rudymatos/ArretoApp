@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArrivingTVC: UITableViewCell {
+class MainTVC: UITableViewCell {
     
     @IBOutlet weak var playerNameLBL: UILabel!
     @IBOutlet weak var playerStatusIV: UIImageView!
@@ -25,10 +25,21 @@ class ArrivingTVC: UITableViewCell {
     }
     
     func configureView(){
-        viewHelper.addShadow(toView: cardView, withBackGroundColor: UIColor.white.withAlphaComponent(0.5))
         if let playerInfoDTO = playerInfoDTO{
+            
             playerNameLBL.text = playerInfoDTO.playerName.uppercased()
-            playerOrderNumber.text = "Llegó de #\(playerInfoDTO.arrivingOrder) a la lista"
+            let totalGamesPlayed = playerInfoDTO.winingStreak + playerInfoDTO.losingStreak
+            playerOrderNumber.text = "G: \(playerInfoDTO.winingStreak) - P: \(playerInfoDTO.losingStreak) - T: \(totalGamesPlayed)"
+            switch playerInfoDTO.eventStatus {
+            case .lost:
+                playerStatusIV.image = UIImage(named: "played_lost")
+                playerOrderNumber.text = "\(playerInfoDTO.losingStreak) \(playerInfoDTO.losingStreak > 1 ? "juegos perdidos":"juego perdido")"
+            case .onBoard:
+                playerStatusIV.image = UIImage(named: "main_player_basketball")
+            default://waiting
+                playerStatusIV.image = UIImage(named: "waiting")
+            }
+            viewHelper.addShadow(toView: cardView, withBackGroundColor: playerInfoDTO.active ? ColorUtil.ACTIVE_COLOR.withAlphaComponent(0.3) : UIColor.gray.withAlphaComponent(0.3))
         }
     }
     

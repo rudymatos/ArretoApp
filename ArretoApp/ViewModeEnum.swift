@@ -65,8 +65,8 @@ enum ViewModeEnum: String {
     
     func getEventType() -> EventTypeEnum?{
         switch self {
-        case .arrived:
-            return EventTypeEnum.arrived
+//        case .onBoard:
+//            return EventTypeEnum.onBoard
         case .lost:
             return EventTypeEnum.lost
         default:

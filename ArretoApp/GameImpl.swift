@@ -13,6 +13,7 @@ class GameImpl: GameType{
     private let coreDataHelper = CoreDataHelper.sharedInstance
     private let firebaseHelper = FirebaseHelper.sharedInstance
     private let userDefaultsHelper = UserDefaultsHelper.sharedInstance
+    private let NUM_OF_MAX_ACTIVE_EVENTS = 10
     
     func getBoard() -> Board {
         return coreDataHelper.isThereAnActiveBoard() ? coreDataHelper.getActiveBoard() : coreDataHelper.createBoard()
@@ -21,6 +22,7 @@ class GameImpl: GameType{
     func getAllPlayer() -> [Player]?{
         return coreDataHelper.getAllPlayers()
     }
+    
     
     func getAllPlayerWithNoEvents(board : Board) -> [Player]?{
         return coreDataHelper.getAllPlayerWithNoEvents(board: board)
@@ -43,11 +45,11 @@ class GameImpl: GameType{
         return coreDataHelper.getAllActiveEventsCountFromBoard(board: board)
     }
     
-    func inactiveEvent(currentBoard : Board, currentEvent : Event){
-        coreDataHelper.inactiveEvent(currentEvent: currentEvent)
+    func switchEventActiveStatus(currentBoard : Board, currentEvent : Event){
+        coreDataHelper.switchEventActiveStatus(currentEvent: currentEvent)
         if userDefaultsHelper.isBoardBeingShared(){
             //check this because the device id implementation should be different
-            firebaseHelper.inactiveEvent(currentBoard: currentBoard, event: currentEvent)
+            firebaseHelper.updateEventActiveStatus(currentBoard: currentBoard, event: currentEvent)
         }
     }
     
@@ -58,15 +60,40 @@ class GameImpl: GameType{
         }
     }
     
+    func processEventsToCalculate(currentBoard : Board){
+        let allEvents = getAllEventsFromBoard(board: currentBoard, byStatus: nil)
+        if allEvents.count >= NUM_OF_MAX_ACTIVE_EVENTS{
+            let numberOfEventsToWork = (NUM_OF_MAX_ACTIVE_EVENTS - getAllActiveEventsCountFromBoard(board: currentBoard))
+            var lastActiveIndex = userDefaultsHelper.currentActiveIndex()
+            if numberOfEventsToWork > 0 {
+                var eventChangedCounter = 0
+                while(eventChangedCounter < numberOfEventsToWork){
+                    let currentEvent = allEvents[lastActiveIndex]
+                    if currentEvent.status != EventTypeEnum.separator.rawValue{
+                        switchEventActiveStatus(currentBoard: currentBoard, currentEvent: currentEvent)
+                        if currentEvent.status == EventTypeEnum.waiting.rawValue{
+                            changeEventStatus(currentBoard: currentBoard, currentEvent: currentEvent, status: .onBoard)
+                        }
+                        eventChangedCounter += 1
+                    }
+                    lastActiveIndex += 1
+                }
+            }
+            userDefaultsHelper.saveCurrentActiveIndex(activeIndex: lastActiveIndex)
+        }
+    }
+    
+    
+    
     func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?, summaryText : String?) throws {
-        if let player = player , status == EventTypeEnum.arrived && coreDataHelper.doesArrivingEventWasAlreadyCreated(player: player, activeBoard: board){
+        if let player = player , status == EventTypeEnum.onBoard && coreDataHelper.doesArrivingEventWasAlreadyCreated(player: player, activeBoard: board){
             throw ArretoExceptions.ArrivingEventAlreadyExists
         }else{
             let nextNumber = coreDataHelper.getNextEventNumber(activeBoard: board)
             let event = coreDataHelper.createObjectContext(entityName: Event.className) as! Event
             event.listOrder = Int16(nextNumber)
             
-            if status == EventTypeEnum.arrived{
+            if status == EventTypeEnum.onBoard{
                 let nextArrivingOrder = coreDataHelper.getNextArrivingEventNumber(activeBoard: board)
                 event.arrivingOrder = Int16(nextArrivingOrder)
             }
@@ -74,6 +101,8 @@ class GameImpl: GameType{
             event.status = status.rawValue
             event.board = board
             event.player = player
+            
+            event.active = false
             
             if let winLostStreaks = winLostStreaks{
                 event.winingStreak = Int16(winLostStreaks.winStreak)

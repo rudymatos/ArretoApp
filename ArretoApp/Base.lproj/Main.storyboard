@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="arrivingCell" rowHeight="100" id="6Dt-mI-Pdc" customClass="ArrivingTVC" customModule="ArretoApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mainCell" rowHeight="100" id="6Dt-mI-Pdc" customClass="MainTVC" customModule="ArretoApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Dt-mI-Pdc" id="6gp-qU-tEV">
@@ -162,6 +162,7 @@
                             <color key="tintColor" red="0.17262542249999999" green="0.2005315423" blue="0.28594523669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                         <rightBarButtonItems>
+                            <barButtonItem title="0" id="8Sx-5f-Dpb"/>
                             <barButtonItem image="view_board" id="Jqi-19-Avb">
                                 <color key="tintColor" red="0.19144394989999999" green="0.20985031130000001" blue="0.27720469240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -405,7 +406,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="0.9995248914" green="0.98700374359999998" blue="0.91785770649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="CZQ-Eg-Zxv" firstAttribute="centerY" secondItem="AIg-s8-fuc" secondAttribute="centerY" id="VI3-gy-3zR"/>
                         <constraint firstItem="CZQ-Eg-Zxv" firstAttribute="centerX" secondItem="AIg-s8-fuc" secondAttribute="centerX" id="nYf-Cx-Pxm"/>
@@ -445,11 +446,11 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agregar Jugador" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJa-ql-0O4">
                                                 <rect key="frame" x="87" y="14" width="121.5" height="22"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="16"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.92549019610000005" green="0.87058823529999996" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.12458945065736771" green="0.14352381229400635" blue="0.21817570924758911" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="AJa-ql-0O4" firstAttribute="centerY" secondItem="CEe-Jr-UNO" secondAttribute="centerY" id="1eY-My-m8u"/>
                                             <constraint firstItem="AJa-ql-0O4" firstAttribute="centerX" secondItem="CEe-Jr-UNO" secondAttribute="centerX" id="qFz-Ek-dl6"/>
@@ -473,9 +474,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbs-Cl-t9N">
                                                 <rect key="frame" x="0.0" y="0.0" width="58" height="35"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="16"/>
-                                                <state key="normal" title="Agregar">
-                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                </state>
+                                                <state key="normal" title="Agregar"/>
                                                 <connections>
                                                     <action selector="addPlayerDidTouch:" destination="VjK-9B-Hk7" eventType="touchUpInside" id="FaE-gL-XQZ"/>
                                                 </connections>
@@ -483,9 +482,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HW3-OY-oSf">
                                                 <rect key="frame" x="158" y="0.0" width="63" height="35"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="16"/>
-                                                <state key="normal" title="Cancelar">
-                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                </state>
+                                                <state key="normal" title="Cancelar"/>
                                                 <connections>
                                                     <action selector="dismissCurrentVC:" destination="VjK-9B-Hk7" eventType="touchUpInside" id="KD7-Ri-9cO"/>
                                                 </connections>
@@ -552,7 +549,7 @@
                                         </connections>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.92549019610000005" green="0.87058823529999996" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.12458945065736771" green="0.14352381229400635" blue="0.21817570924758911" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="CEe-Jr-UNO" secondAttribute="trailing" id="1ti-OB-WeO"/>
                                     <constraint firstAttribute="width" constant="295" id="3WN-Z5-ZNo"/>
@@ -800,7 +797,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.92549019610000005" green="0.87058823529999996" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="rOQ-6H-lNq" firstAttribute="centerY" secondItem="XJb-5j-XZR" secondAttribute="centerY" id="6Q4-za-fi0"/>
                                             <constraint firstAttribute="height" constant="50" id="OOd-yf-Gdk"/>
@@ -833,7 +830,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.92549019610000005" green="0.87058823529999996" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="mSX-QA-36j" firstAttribute="centerX" secondItem="ed2-aC-ICp" secondAttribute="centerX" id="3yP-iq-LSL"/>
                                             <constraint firstItem="mSX-QA-36j" firstAttribute="centerY" secondItem="ed2-aC-ICp" secondAttribute="centerY" id="d5c-WF-kpn"/>
@@ -841,7 +838,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.91372549020000005" green="0.93725490199999995" blue="0.93725490199999995" alpha="0.85199058220000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Sqv-Hm-VYo" firstAttribute="centerX" secondItem="XJb-5j-XZR" secondAttribute="centerX" id="143-AP-RHK"/>
                                     <constraint firstItem="ed2-aC-ICp" firstAttribute="leading" secondItem="vsf-vK-8NZ" secondAttribute="leading" id="44L-dz-HbQ"/>
