@@ -2,25 +2,46 @@
 //  Board+CoreDataProperties.swift
 //  ArretoApp
 //
-//  Created by Rudy E Matos on 10/22/16.
-//  Copyright © 2016 Bearded Gentleman. All rights reserved.
+//  Created by Rudy E Matos on 5/7/17.
+//  Copyright © 2017 Bearded Gentleman. All rights reserved.
 //
 
 import Foundation
-import CoreData 
+import CoreData
+
 
 extension Board {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Board> {
-        return NSFetchRequest<Board>(entityName: "Board");
+        return NSFetchRequest<Board>(entityName: "Board")
     }
 
-    @NSManaged public var createdOn: NSDate?
-    @NSManaged public var published: Bool
     @NSManaged public var active: Bool
-    @NSManaged public var key: String?
+    @NSManaged public var createdOn: NSDate?
     @NSManaged public var firebaseId: String?
+    @NSManaged public var key: String?
+    @NSManaged public var published: Bool
+    @NSManaged public var type: String?
+    @NSManaged public var playerBoardInfo: NSSet?
     @NSManaged public var events: NSSet?
+    @NSManaged public var league: League?
+
+}
+
+// MARK: Generated accessors for playerBoardInfo
+extension Board {
+
+    @objc(addPlayerBoardInfoObject:)
+    @NSManaged public func addToPlayerBoardInfo(_ value: PlayerBoardInfo)
+
+    @objc(removePlayerBoardInfoObject:)
+    @NSManaged public func removeFromPlayerBoardInfo(_ value: PlayerBoardInfo)
+
+    @objc(addPlayerBoardInfo:)
+    @NSManaged public func addToPlayerBoardInfo(_ values: NSSet)
+
+    @objc(removePlayerBoardInfo:)
+    @NSManaged public func removeFromPlayerBoardInfo(_ values: NSSet)
 
 }
 

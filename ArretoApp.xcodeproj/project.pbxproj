@@ -29,6 +29,16 @@
 		F5DB98FB1DE639D700FD9933 /* ViewModeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB98FA1DE639D700FD9933 /* ViewModeEnum.swift */; };
 		F5DB98FD1DE67BBC00FD9933 /* ChangeViewModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB98FC1DE67BBC00FD9933 /* ChangeViewModeVC.swift */; };
 		F5DB98FF1DE67BEC00FD9933 /* ViewModeCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB98FE1DE67BEC00FD9933 /* ViewModeCVC.swift */; };
+		F5F6EF4B1EBFFCEB00B100D7 /* Board+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF411EBFFCEB00B100D7 /* Board+CoreDataClass.swift */; };
+		F5F6EF4C1EBFFCEB00B100D7 /* Board+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF421EBFFCEB00B100D7 /* Board+CoreDataProperties.swift */; };
+		F5F6EF4D1EBFFCEB00B100D7 /* League+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF431EBFFCEB00B100D7 /* League+CoreDataClass.swift */; };
+		F5F6EF4E1EBFFCEB00B100D7 /* League+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF441EBFFCEB00B100D7 /* League+CoreDataProperties.swift */; };
+		F5F6EF511EBFFCEB00B100D7 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF471EBFFCEB00B100D7 /* Player+CoreDataClass.swift */; };
+		F5F6EF521EBFFCEB00B100D7 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF481EBFFCEB00B100D7 /* Player+CoreDataProperties.swift */; };
+		F5F6EF531EBFFCEB00B100D7 /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF491EBFFCEB00B100D7 /* Event+CoreDataClass.swift */; };
+		F5F6EF541EBFFCEB00B100D7 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF4A1EBFFCEB00B100D7 /* Event+CoreDataProperties.swift */; };
+		F5F6EF5B1EC0058700B100D7 /* PlayerBoardInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF591EC0058700B100D7 /* PlayerBoardInfo+CoreDataClass.swift */; };
+		F5F6EF5C1EC0058700B100D7 /* PlayerBoardInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6EF5A1EC0058700B100D7 /* PlayerBoardInfo+CoreDataProperties.swift */; };
 		F5F7C3BB1DBBC59D00BC116E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */; };
 		F5F7C3BD1DBBC59D00BC116E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */; };
 		F5F7C3C01DBBC59D00BC116E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3BE1DBBC59D00BC116E /* Main.storyboard */; };
@@ -36,12 +46,6 @@
 		F5F7C3C51DBBC59D00BC116E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3C41DBBC59D00BC116E /* Assets.xcassets */; };
 		F5F7C3C81DBBC59D00BC116E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5F7C3C61DBBC59D00BC116E /* LaunchScreen.storyboard */; };
 		F5F7C3D01DBBD0B900BC116E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3CF1DBBD0B900BC116E /* CoreDataHelper.swift */; };
-		F5F7C3DC1DBBD39A00BC116E /* Board+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3D61DBBD39A00BC116E /* Board+CoreDataClass.swift */; };
-		F5F7C3DD1DBBD39A00BC116E /* Board+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3D71DBBD39A00BC116E /* Board+CoreDataProperties.swift */; };
-		F5F7C3DE1DBBD39A00BC116E /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3D81DBBD39A00BC116E /* Player+CoreDataClass.swift */; };
-		F5F7C3DF1DBBD39A00BC116E /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3D91DBBD39A00BC116E /* Player+CoreDataProperties.swift */; };
-		F5F7C3E01DBBD39A00BC116E /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3DA1DBBD39A00BC116E /* Event+CoreDataClass.swift */; };
-		F5F7C3E11DBBD39A00BC116E /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3DB1DBBD39A00BC116E /* Event+CoreDataProperties.swift */; };
 		F5F7C3E41DBBDBC700BC116E /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3E31DBBDBC700BC116E /* GameType.swift */; };
 		F5F7C3E81DBBDC2700BC116E /* GameImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3E71DBBDC2700BC116E /* GameImpl.swift */; };
 		F5F7C3EA1DBBE04A00BC116E /* AddPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7C3E91DBBE04A00BC116E /* AddPlayerVC.swift */; };
@@ -76,6 +80,18 @@
 		F5DB98FA1DE639D700FD9933 /* ViewModeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModeEnum.swift; sourceTree = "<group>"; };
 		F5DB98FC1DE67BBC00FD9933 /* ChangeViewModeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeViewModeVC.swift; sourceTree = "<group>"; };
 		F5DB98FE1DE67BEC00FD9933 /* ViewModeCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModeCVC.swift; sourceTree = "<group>"; };
+		F5F6EED71EBB434700B100D7 /* ArretoApp v1.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ArretoApp v1.4.xcdatamodel"; sourceTree = "<group>"; };
+		F5F6EF2C1EBFF62B00B100D7 /* ArretoApp v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ArretoApp v1.5.xcdatamodel"; sourceTree = "<group>"; };
+		F5F6EF411EBFFCEB00B100D7 /* Board+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Board+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5F6EF421EBFFCEB00B100D7 /* Board+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Board+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5F6EF431EBFFCEB00B100D7 /* League+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "League+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5F6EF441EBFFCEB00B100D7 /* League+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "League+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5F6EF471EBFFCEB00B100D7 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5F6EF481EBFFCEB00B100D7 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5F6EF491EBFFCEB00B100D7 /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5F6EF4A1EBFFCEB00B100D7 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5F6EF591EC0058700B100D7 /* PlayerBoardInfo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlayerBoardInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5F6EF5A1EC0058700B100D7 /* PlayerBoardInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlayerBoardInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F5F7C3B71DBBC59D00BC116E /* ArretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F7C3BA1DBBC59D00BC116E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5F7C3BC1DBBC59D00BC116E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -85,12 +101,6 @@
 		F5F7C3C71DBBC59D00BC116E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5F7C3C91DBBC59D00BC116E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5F7C3CF1DBBD0B900BC116E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
-		F5F7C3D61DBBD39A00BC116E /* Board+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Board+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F5F7C3D71DBBD39A00BC116E /* Board+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Board+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F5F7C3D81DBBD39A00BC116E /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F5F7C3D91DBBD39A00BC116E /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F5F7C3DA1DBBD39A00BC116E /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F5F7C3DB1DBBD39A00BC116E /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F5F7C3E31DBBDBC700BC116E /* GameType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
 		F5F7C3E71DBBDC2700BC116E /* GameImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameImpl.swift; sourceTree = "<group>"; };
 		F5F7C3E91DBBE04A00BC116E /* AddPlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlayerVC.swift; sourceTree = "<group>"; };
@@ -235,12 +245,16 @@
 		F5F7C3D51DBBD38300BC116E /* entities */ = {
 			isa = PBXGroup;
 			children = (
-				F5F7C3D61DBBD39A00BC116E /* Board+CoreDataClass.swift */,
-				F5F7C3D71DBBD39A00BC116E /* Board+CoreDataProperties.swift */,
-				F5F7C3D81DBBD39A00BC116E /* Player+CoreDataClass.swift */,
-				F5F7C3D91DBBD39A00BC116E /* Player+CoreDataProperties.swift */,
-				F5F7C3DA1DBBD39A00BC116E /* Event+CoreDataClass.swift */,
-				F5F7C3DB1DBBD39A00BC116E /* Event+CoreDataProperties.swift */,
+				F5F6EF591EC0058700B100D7 /* PlayerBoardInfo+CoreDataClass.swift */,
+				F5F6EF5A1EC0058700B100D7 /* PlayerBoardInfo+CoreDataProperties.swift */,
+				F5F6EF411EBFFCEB00B100D7 /* Board+CoreDataClass.swift */,
+				F5F6EF421EBFFCEB00B100D7 /* Board+CoreDataProperties.swift */,
+				F5F6EF431EBFFCEB00B100D7 /* League+CoreDataClass.swift */,
+				F5F6EF441EBFFCEB00B100D7 /* League+CoreDataProperties.swift */,
+				F5F6EF471EBFFCEB00B100D7 /* Player+CoreDataClass.swift */,
+				F5F6EF481EBFFCEB00B100D7 /* Player+CoreDataProperties.swift */,
+				F5F6EF491EBFFCEB00B100D7 /* Event+CoreDataClass.swift */,
+				F5F6EF4A1EBFFCEB00B100D7 /* Event+CoreDataProperties.swift */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -402,38 +416,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5F7C3E11DBBD39A00BC116E /* Event+CoreDataProperties.swift in Sources */,
 				F50FE6211DC9B35900029A11 /* ActionExecuter.swift in Sources */,
 				F5DB98FB1DE639D700FD9933 /* ViewModeEnum.swift in Sources */,
+				F5F6EF521EBFFCEB00B100D7 /* Player+CoreDataProperties.swift in Sources */,
 				F5F7C3E81DBBDC2700BC116E /* GameImpl.swift in Sources */,
 				F5CF8A791DBD24B30043E05A /* ArretoExceptions.swift in Sources */,
 				F50FE61F1DC9B2B900029A11 /* MainTVC.swift in Sources */,
 				F5DB98FF1DE67BEC00FD9933 /* ViewModeCVC.swift in Sources */,
-				F5F7C3DC1DBBD39A00BC116E /* Board+CoreDataClass.swift in Sources */,
 				F50FE6231DC9B5DD00029A11 /* PlayerInfoDTO.swift in Sources */,
 				F5D24FBD1E1AF72500219749 /* MainVCExtension.swift in Sources */,
+				F5F6EF4E1EBFFCEB00B100D7 /* League+CoreDataProperties.swift in Sources */,
 				F5864C6C1E1BC19E00538AC3 /* MainVCHandler.swift in Sources */,
 				F5221B051DDF25880017BBBD /* FirebaseType.swift in Sources */,
 				F5DA102D1E10272C0026E414 /* FirebaseKeysEnum.swift in Sources */,
 				F5DA104D1E14C0590026E414 /* DeleteBoardVC.swift in Sources */,
 				F596422C1DC980DD001FA9A9 /* FirebaseHelper.swift in Sources */,
 				F50FE61D1DC9A1A900029A11 /* AddShareBoardVC.swift in Sources */,
+				F5F6EF4D1EBFFCEB00B100D7 /* League+CoreDataClass.swift in Sources */,
+				F5F6EF531EBFFCEB00B100D7 /* Event+CoreDataClass.swift in Sources */,
+				F5F6EF4C1EBFFCEB00B100D7 /* Board+CoreDataProperties.swift in Sources */,
 				F5F7C3BD1DBBC59D00BC116E /* MainVC.swift in Sources */,
+				F5F6EF5B1EC0058700B100D7 /* PlayerBoardInfo+CoreDataClass.swift in Sources */,
 				F5CF8A7C1DBD29AD0043E05A /* EventTypeEnum.swift in Sources */,
-				F5F7C3DF1DBBD39A00BC116E /* Player+CoreDataProperties.swift in Sources */,
-				F5F7C3DD1DBBD39A00BC116E /* Board+CoreDataProperties.swift in Sources */,
+				F5F6EF4B1EBFFCEB00B100D7 /* Board+CoreDataClass.swift in Sources */,
 				F5A0D7411EB0AFED002520B2 /* PlayerNameTVC.swift in Sources */,
-				F5F7C3E01DBBD39A00BC116E /* Event+CoreDataClass.swift in Sources */,
 				F5B965371E18384300713425 /* ViewHelper.swift in Sources */,
 				F5F7C3EA1DBBE04A00BC116E /* AddPlayerVC.swift in Sources */,
 				F5F7C3E41DBBDBC700BC116E /* GameType.swift in Sources */,
+				F5F6EF511EBFFCEB00B100D7 /* Player+CoreDataClass.swift in Sources */,
 				F50FE62B1DCEB53000029A11 /* ColorUtil.swift in Sources */,
+				F5F6EF541EBFFCEB00B100D7 /* Event+CoreDataProperties.swift in Sources */,
+				F5F6EF5C1EC0058700B100D7 /* PlayerBoardInfo+CoreDataProperties.swift in Sources */,
 				F50FE6191DC9944500029A11 /* KeyGeneratorHelper.swift in Sources */,
 				F5F7C3C31DBBC59D00BC116E /* ArretoApp.xcdatamodeld in Sources */,
 				F5221B071DE10A0C0017BBBD /* UserDefaultsHelper.swift in Sources */,
 				F5F7C3D01DBBD0B900BC116E /* CoreDataHelper.swift in Sources */,
 				F5DB98FD1DE67BBC00FD9933 /* ChangeViewModeVC.swift in Sources */,
-				F5F7C3DE1DBBD39A00BC116E /* Player+CoreDataClass.swift in Sources */,
 				F5F7C3BB1DBBC59D00BC116E /* AppDelegate.swift in Sources */,
 				F50FE61B1DC996E200029A11 /* KeyGenerator.swift in Sources */,
 			);
@@ -615,11 +633,13 @@
 		F5F7C3C11DBBC59D00BC116E /* ArretoApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F5F6EF2C1EBFF62B00B100D7 /* ArretoApp v1.5.xcdatamodel */,
+				F5F6EED71EBB434700B100D7 /* ArretoApp v1.4.xcdatamodel */,
 				F5221B031DDF23740017BBBD /* ArretoApp v1. 3.xcdatamodel */,
 				F58499AC1DC4FBC00052B752 /* ArretoApp v1.2.xcdatamodel */,
 				F5F7C3C21DBBC59D00BC116E /* ArretoApp.xcdatamodel */,
 			);
-			currentVersion = F5221B031DDF23740017BBBD /* ArretoApp v1. 3.xcdatamodel */;
+			currentVersion = F5F6EF2C1EBFF62B00B100D7 /* ArretoApp v1.5.xcdatamodel */;
 			path = ArretoApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

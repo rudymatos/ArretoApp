@@ -20,7 +20,7 @@ class MainVC: UIViewController {
     let gameImpl = GameImpl()
     var viewMode = ViewModeEnum.all
     private var uniqueKeyToShare : String?
-    private let userDefaultsHelper = UserDefaultsHelper.sharedInstance
+    let userDefaultsHelper = UserDefaultsHelper.sharedInstance
     private let viewHelper = ViewHelper.sharedInstance
     
     override func viewDidLoad() {
@@ -78,7 +78,7 @@ class MainVC: UIViewController {
                 self.navigationItem.rightBarButtonItems?.append(addPlayer)
             }
         }
-        self.navigationItem.rightBarButtonItems?[0].title = "\(userDefaultsHelper.getArrivingListCount())"
+        self.navigationItem.rightBarButtonItems?[0].title = "\(userDefaultsHelper.getCount(onKey: .arrivingList))"
     }
     
     //MARK: - RELOAD DATA
@@ -165,7 +165,7 @@ class MainVC: UIViewController {
     }
     
     @IBAction func goBackFromAddingPlayer(segue : UIStoryboardSegue){
-        self.navigationItem.rightBarButtonItems?[0].title = "\(userDefaultsHelper.getArrivingListCount())"
+        self.navigationItem.rightBarButtonItems?[0].title = "\(userDefaultsHelper.getCount(onKey: .arrivingList))"
         filterEvents(toMode: viewMode)
         displayElementsBasedOnEventListCount()
     }

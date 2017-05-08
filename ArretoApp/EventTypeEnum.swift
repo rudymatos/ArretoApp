@@ -10,15 +10,18 @@ import Foundation
 
 enum EventTypeEnum: String {
     
-    case onBoard = "On Board"
+    case arrived = "Arrived"
+    case playing = "Playing"
     case lost = "Lost"
-    case separator = "Separator"
     case waiting = "Waiting"
+    case separator = "Separator"
     
     func getSpanish() -> String{
         switch  self {
-        case .onBoard:
-            return "En Pizarra"
+        case .arrived:
+            return "Llegó"
+        case .playing:
+            return "Jugando"
         case .lost:
             return "Perdió"
         case .separator:

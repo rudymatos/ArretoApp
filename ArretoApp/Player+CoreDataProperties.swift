@@ -2,20 +2,22 @@
 //  Player+CoreDataProperties.swift
 //  ArretoApp
 //
-//  Created by Rudy E Matos on 10/22/16.
-//  Copyright © 2016 Bearded Gentleman. All rights reserved.
+//  Created by Rudy E Matos on 5/7/17.
+//  Copyright © 2017 Bearded Gentleman. All rights reserved.
 //
 
 import Foundation
-import CoreData 
+import CoreData
+
 
 extension Player {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Player> {
-        return NSFetchRequest<Player>(entityName: "Player");
+        return NSFetchRequest<Player>(entityName: "Player")
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var playerBoardInfo: PlayerBoardInfo?
     @NSManaged public var events: NSSet?
 
 }

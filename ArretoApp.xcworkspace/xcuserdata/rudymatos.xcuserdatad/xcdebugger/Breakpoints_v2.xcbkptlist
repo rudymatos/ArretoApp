@@ -41,22 +41,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ArretoApp/GameImpl.swift"
-            timestampString = "515420523.9405"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "findWinLostStreak(currentEvent:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ArretoApp/LeftTVC.swift"
             timestampString = "504983739.016313"
             startingColumnNumber = "9223372036854775807"
@@ -170,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/MainVC.swift"
-            timestampString = "515420284.50948"
+            timestampString = "515420869.106983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "goBackFromChangeView(segue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/MainVC.swift"
-            timestampString = "515420284.50948"
+            timestampString = "515420869.106983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "goBackFromChangeView(segue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/MainVC.swift"
-            timestampString = "515420284.50948"
+            timestampString = "515420869.106983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "shareOrJoinBoard(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/GameImpl.swift"
-            timestampString = "515420523.9405"
+            timestampString = "515901440.302759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "shareBoard(currentBoard:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/MainVCExtension.swift"
-            timestampString = "515305584.703048"
+            timestampString = "515680242.367313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/MainVCExtension.swift"
-            timestampString = "515305584.703048"
+            timestampString = "515680242.367313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/MainVCExtension.swift"
-            timestampString = "515305584.703048"
+            timestampString = "515680242.367313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,12 +378,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/GameImpl.swift"
-            timestampString = "515307912.692601"
+            timestampString = "515680242.367313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "processEventsToCalculate(currentBoard:)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "processEventsToChangeTypeAndActiveStatus(currentBoard:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -442,12 +426,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/GameImpl.swift"
-            timestampString = "515387880.977234"
+            timestampString = "515680242.367313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "processEventsToCalculate(currentBoard:)"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "processEventsToChangeTypeAndActiveStatus(currentBoard:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -458,12 +442,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/GameImpl.swift"
-            timestampString = "515420523.9405"
+            timestampString = "515680242.367313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "processEventsToCalculate(currentBoard:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "processEventsToChangeTypeAndActiveStatus(currentBoard:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -474,12 +458,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/GameImpl.swift"
-            timestampString = "515388137.980208"
+            timestampString = "515680242.367313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "processEventsToCalculate(currentBoard:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "processEventsToChangeTypeAndActiveStatus(currentBoard:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -490,12 +474,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ArretoApp/GameImpl.swift"
-            timestampString = "515420523.9405"
+            timestampString = "515680242.367313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "processEventsToCalculate(currentBoard:)"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "processEventsToChangeTypeAndActiveStatus(currentBoard:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ArretoApp/MainVCExtension.swift"
+            timestampString = "515680309.390041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "createLostEvent(currentEvent:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

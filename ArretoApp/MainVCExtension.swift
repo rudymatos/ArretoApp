@@ -13,7 +13,7 @@ extension MainVC : ActionExecuter{
     
     //MARK: - ACTIONEXECUTER
     
-    func changeEventStatus(currentCell: UITableViewCell) {
+    func changeEventType(currentCell: UITableViewCell) {
         if let currentIndex = eventsTV.indexPath(for: currentCell){
             let currentEvent = eventList[currentIndex.row]
             if currentEvent.active {
@@ -22,24 +22,32 @@ extension MainVC : ActionExecuter{
         }
     }
     
-    func undoEventSTatus(currentCell: UITableViewCell){
+    func undoEventType(currentCell: UITableViewCell){
         //redo from history
     }
     
-    private func createLostEvent(currentEvent: Event){
+     private func createLostEvent(currentEvent: Event){
         if let currentPlayer = currentEvent.player{
             
             //calculate win/lost streak
             //Create history record
             gameImpl.switchEventActiveStatus(currentBoard: currentBoard!, currentEvent: currentEvent)
-            gameImpl.changeEventStatus(currentBoard: currentBoard!, currentEvent: currentEvent, status: .lost)
-            
-            
+            gameImpl.changeEventType(currentBoard: currentBoard!, currentEvent: currentEvent, status: .lost)
+            gameImpl.increase(player: currentPlayer, winingStreak: false, losingStreak: true)
+    
+            let lostCounter = userDefaultsHelper.getCount(onKey: .lostCounter)
+            if lostCounter != GameImpl.MAX_LOST_COUNTER{
+                userDefaultsHelper.increaseCounter(onKey: .lostCounter)
+            }else{
+                userDefaultsHelper.cleanUp(onKey: .lostCounter)
+                gameImpl.processWiningStreak(currentBoard: currentBoard!)
+            }
             //catch exceptions
-            try! gameImpl.createEvent(status: .waiting, board: currentBoard!, player: currentPlayer,winLostStreaks: nil, summaryText: nil)
+            try! gameImpl.createEvent(eventType: .waiting, currentBoard: currentBoard!, player: currentPlayer)
             try! gameImpl.createSeparator(currentBoard: currentBoard!)
             
-            gameImpl.processEventsToCalculate(currentBoard: currentBoard!)
+            gameImpl.processEventsToChangeTypeAndActiveStatus(currentBoard: currentBoard!)
+            
             filterEvents(toMode: viewMode)
             eventsTV.reloadData()
             //animate incoming cell with fade in effect
@@ -62,7 +70,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let currentEvent = eventList[indexPath.row]
-        if let eventStatus = currentEvent.status, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus){
+        if let eventStatus = currentEvent.type, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus){
             switch  eventTypeEnum {
             case .separator:
                 return 30
@@ -78,9 +86,15 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentEvent = eventList[indexPath.row]
         var playerInfoDTO : PlayerInfoDTO? = nil
-        if let eventStatus = currentEvent.status, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus){
-            if let playerName = currentEvent.player?.name{
-                playerInfoDTO = PlayerInfoDTO(playerName: playerName, arrivingOrder: Int(currentEvent.arrivingOrder), listOrder: Int(currentEvent.listOrder), eventStatus: eventTypeEnum, winingStreak: Int(currentEvent.winingStreak), losingStreak: Int(currentEvent.losingStreak), active : currentEvent.active)
+        if let eventStatus = currentEvent.type, let eventTypeEnum = EventTypeEnum(rawValue: eventStatus){
+            if let player = currentEvent.player, let playerName = player.name{
+                playerInfoDTO = PlayerInfoDTO(playerName: playerName,
+                                              arrivingOrder: Int(player.playerBoardInfo?.arrivingOrder ?? 0),
+                                              listOrder: Int(currentEvent.listOrder),
+                                              eventStatus: eventTypeEnum,
+                                              winingStreak: Int(player.playerBoardInfo?.winingStreak ?? 0),
+                                              losingStreak: Int(player.playerBoardInfo?.losingStreak ?? 0),
+                                              active : currentEvent.active)
             }
             switch eventTypeEnum{
             case .separator:

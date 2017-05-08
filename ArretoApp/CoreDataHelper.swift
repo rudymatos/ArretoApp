@@ -76,13 +76,8 @@ class CoreDataHelper{
         saveContext()
     }
     
-    func changeEventStatus(currentEvent: Event, newEventStatus : EventTypeEnum){
-        currentEvent.status = newEventStatus.rawValue
-//        if newEventStatus == .won{
-//            currentEvent.winingStreak += 1
-//        }else if newEventStatus == .lost{
-//            currentEvent.losingStreak += 1
-//        }
+    func changeEventType(currentEvent: Event, newEventType : EventTypeEnum){
+        currentEvent.type = newEventType.rawValue
         saveContext()
     }
     
@@ -101,7 +96,7 @@ class CoreDataHelper{
     func getNextArrivingEventNumber(activeBoard board: Board) -> Int{
         var nextNumber = 0
         let request :  NSFetchRequest<Event> = Event.fetchRequest()
-        request.predicate = NSPredicate(format: "board.createdOn = %@ and status = %@", board.createdOn!, EventTypeEnum.onBoard.rawValue)
+        request.predicate = NSPredicate(format: "board.createdOn = %@ and type = %@", board.createdOn!, EventTypeEnum.arrived.rawValue)
         do{
             nextNumber = try managedObjectContext.count(for: request) + 1
         }catch{
@@ -114,7 +109,7 @@ class CoreDataHelper{
     func doesArrivingEventWasAlreadyCreated(player : Player, activeBoard board: Board) -> Bool {
         var doesArrivingEventWasAlreadyCreated = false
         let request : NSFetchRequest<Event> = Event.fetchRequest()
-        request.predicate = NSPredicate(format: "status = %@ and player = %@ and board = %@", EventTypeEnum.onBoard.rawValue, player, board)
+        request.predicate = NSPredicate(format: "type = %@ and player = %@ and board = %@", EventTypeEnum.arrived.rawValue, player, board)
         request.fetchLimit = 1
         do{
             doesArrivingEventWasAlreadyCreated = try managedObjectContext.fetch(request).count > 0
@@ -147,16 +142,17 @@ class CoreDataHelper{
         return results
     }
     
-    func getAllEventsFromBoard(board:Board , byStatus: EventTypeEnum?) -> [Event]{
+    func getAllEventsFromBoard(board:Board , byType: EventTypeEnum?) -> [Event]{
         var results = [Event]()
         let request : NSFetchRequest<Event> = Event.fetchRequest()
         var  predicate : NSPredicate?
-        if let status = byStatus{
-            predicate  = NSPredicate(format: "board.createdOn = %@ AND status = %@", board.createdOn!, status.rawValue)
+        if let type = byType{
+            predicate  = NSPredicate(format: "board.createdOn = %@ AND type = %@", board.createdOn!, type.rawValue)
         }else{
             predicate = NSPredicate(format: "board.createdOn = %@", board.createdOn!)
         }
         request.predicate = predicate
+        request.sortDescriptors = [NSSortDescriptor(key: "listOrder",ascending : true)]
         do{
             results = try managedObjectContext.fetch(request)
         }catch{
@@ -211,39 +207,7 @@ class CoreDataHelper{
         }
     }
     
-    func findWiningLoseStreakForPlayer(event: Event) -> (Int, Int){
-        
-        var streaks = (wining: 0, losing: 0)
-        
-        if let playerName = event.player?.name, let boardCreatedOn = event.board?.createdOn{
-            
-            let request : NSFetchRequest<Event> = Event.fetchRequest()
-            request.predicate = NSPredicate(format: "player.name = %@ and board.createdOn = %@", playerName, boardCreatedOn)
-            request.sortDescriptors = [NSSortDescriptor(key: "listOrder", ascending: true)]
-            
-            do{
-                let results = try managedObjectContext.fetch(request)
-                if results.count > 0{
-                    
-                    var winingStreak = 0
-                    var losingStreak = 0
-                    
-                    for currentEvent in results{
-//                        if currentEvent.status == EventTypeEnum.won.rawValue{
-//                            winingStreak += 1
-//                        }else if currentEvent.status == EventTypeEnum.lost.rawValue{
-//                            losingStreak += 1
-//                        }
-                    }
-                    streaks.wining = winingStreak
-                    streaks.losing = losingStreak
-                }
-            }catch{
-            }
-        }
-        return streaks
-    }
-    
+
     func getAllPlayerWithNoEvents(board: Board) -> [Player]?{
         let request : NSFetchRequest<Player> = Player.fetchRequest()
         request.predicate = NSPredicate(format: "SUBQUERY(events, $e, any $e.board == %@).@count <= 0", board)

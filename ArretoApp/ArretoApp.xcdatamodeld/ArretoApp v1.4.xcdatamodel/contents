@@ -1,45 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ArrivingList" representedClassName="ArrivingList" syncable="YES" codeGenerationType="class">
-        <attribute name="losingStreak" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="winingStreak" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Board" inverseName="arrivingList" inverseEntity="Board" syncable="YES"/>
-        <relationship name="player" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="arrivingList" inverseEntity="Player" syncable="YES"/>
-    </entity>
     <entity name="Board" representedClassName=".Board" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="firebaseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="published" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="arrivingList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArrivingList" inverseName="board" inverseEntity="ArrivingList" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="board" inverseEntity="Event" syncable="YES"/>
-        <relationship name="league" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="League" inverseName="boards" inverseEntity="League" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName=".Event" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="arrivingOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firebaseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="listOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="losingStreak" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summaryText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="winingStreak" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Board" inverseName="events" inverseEntity="Board" syncable="YES"/>
         <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="events" inverseEntity="Player" syncable="YES"/>
     </entity>
-    <entity name="League" representedClassName="League" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="boards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Board" inverseName="league" inverseEntity="Board" syncable="YES"/>
-    </entity>
     <entity name="Player" representedClassName=".Player" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="arrivingList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArrivingList" inverseName="player" inverseEntity="ArrivingList" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="player" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Board" positionX="-855" positionY="-22" width="128" height="178"/>
-        <element name="Event" positionX="-434" positionY="147" width="128" height="150"/>
-        <element name="Player" positionX="-11" positionY="2" width="128" height="88"/>
-        <element name="ArrivingList" positionX="-432" positionY="-135" width="128" height="103"/>
-        <element name="League" positionX="-414" positionY="81" width="128" height="75"/>
+        <element name="Board" positionX="61" positionY="177" width="128" height="135"/>
+        <element name="Event" positionX="-153" positionY="189" width="128" height="210"/>
+        <element name="Player" positionX="-144" positionY="-0" width="128" height="73"/>
     </elements>
 </model>

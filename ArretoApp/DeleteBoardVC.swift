@@ -48,8 +48,13 @@ class DeleteBoardVC: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Si, estoy seguro!", style: .destructive, handler: { _ in
             self.userDefaultsHelper.saveCurrentActiveIndex(activeIndex: 0)
-            self.userDefaultsHelper.cleanUpArrivingListCount()
+            
+            self.userDefaultsHelper.cleanUp(onKey: .arrivingList)
+            self.userDefaultsHelper.cleanUp(onKey: .lostCounter)
             self.gameImpl.clearBoard(board: self.currentBoard!)
+            
+            
+            
             self.configureApp()
             self.delegate?.removeAllRecordsHandler()
             self.tabBarController?.selectedViewController = self.tabBarController?.viewControllers?.first

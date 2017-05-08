@@ -82,10 +82,10 @@ class AddPlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
         if let selectedPlayer = selectedPlayer{
             do{
-                try gameImpl.createEvent(status: EventTypeEnum.onBoard, board: currentBoard!, player: selectedPlayer, winLostStreaks: (0,0), summaryText: nil)
+                try gameImpl.createEvent(eventType: EventTypeEnum.arrived, currentBoard: currentBoard!, player: selectedPlayer)
                 try gameImpl.createSeparator(currentBoard: currentBoard!)
-                gameImpl.processEventsToCalculate(currentBoard: currentBoard!)
-                userDefaultsHelper.incrementArrivingListCount()
+                gameImpl.processEventsToChangeTypeAndActiveStatus(currentBoard: currentBoard!)
+                userDefaultsHelper.increaseCounter(onKey: .arrivingList)
                 performSegue(withIdentifier: "backToMainScreenSegue", sender: nil)
             }catch ArretoExceptions.ArrivingEventAlreadyExists{
                 //show message

@@ -16,14 +16,16 @@ protocol GameType {
     func findPlayers(byName playerName: String) -> [Player]?
     func getAllPlayer() -> [Player]?
     func getAllPlayerWithNoEvents(board : Board) -> [Player]?
-    func findWinLostStreak(currentEvent: Event) -> (winStreak: Int, lostStreak: Int)
     
-    func processEventsToCalculate(currentBoard : Board)
+    func processWiningStreak(currentBoard : Board)
+    func processEventsToChangeTypeAndActiveStatus(currentBoard : Board)
+    func increase(player: Player, winingStreak : Bool, losingStreak: Bool)
     func getAllActiveEventsCountFromBoard(board : Board) -> Int
     func getAllEventsFromBoard(board : Board, byStatus: EventTypeEnum?) -> [Event]
-    func changeEventStatus(currentBoard : Board, currentEvent: Event, status : EventTypeEnum)
+    func changeEventType(currentBoard : Board, currentEvent: Event, status : EventTypeEnum)
     func switchEventActiveStatus(currentBoard : Board, currentEvent : Event)
-    func createEvent(status: EventTypeEnum, board: Board, player: Player?, winLostStreaks : (winStreak: Int, lostStreak: Int)?, summaryText : String?) throws
+    func createEvent(eventType: EventTypeEnum, currentBoard: Board, player: Player?) throws
+    func getNextArrivingOrder(currentBoard : Board) -> Int
     func createSeparator(currentBoard: Board) throws
     func shareBoard(currentBoard: Board, completion : @escaping (String) -> Void)
     func clearBoard(board : Board)

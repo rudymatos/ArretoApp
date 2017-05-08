@@ -26,20 +26,24 @@ class MainTVC: UITableViewCell {
     
     func configureView(){
         if let playerInfoDTO = playerInfoDTO{
-            
             playerNameLBL.text = playerInfoDTO.playerName.uppercased()
             let totalGamesPlayed = playerInfoDTO.winingStreak + playerInfoDTO.losingStreak
             playerOrderNumber.text = "G: \(playerInfoDTO.winingStreak) - P: \(playerInfoDTO.losingStreak) - T: \(totalGamesPlayed)"
+            viewHelper.addShadow(toView: cardView, withBackGroundColor: playerInfoDTO.active ? ColorUtil.ACTIVE_COLOR.withAlphaComponent(0.3) : UIColor.gray.withAlphaComponent(0.3))
             switch playerInfoDTO.eventStatus {
             case .lost:
                 playerStatusIV.image = UIImage(named: "played_lost")
                 playerOrderNumber.text = "\(playerInfoDTO.losingStreak) \(playerInfoDTO.losingStreak > 1 ? "juegos perdidos":"juego perdido")"
-            case .onBoard:
+                viewHelper.addShadow(toView: cardView, withBackGroundColor: ColorUtil.LOST_COLOR.withAlphaComponent(0.3))
+            case .arrived:
                 playerStatusIV.image = UIImage(named: "main_player_basketball")
+            case .playing:
+                playerStatusIV.image = UIImage(named: "playing")
+                
             default://waiting
                 playerStatusIV.image = UIImage(named: "waiting")
             }
-            viewHelper.addShadow(toView: cardView, withBackGroundColor: playerInfoDTO.active ? ColorUtil.ACTIVE_COLOR.withAlphaComponent(0.3) : UIColor.gray.withAlphaComponent(0.3))
+            
         }
     }
     
@@ -48,7 +52,7 @@ class MainTVC: UITableViewCell {
         configureView()
     }
     @IBAction func changeEventStatus(_ sender: UIButton) {
-        delegate?.changeEventStatus(currentCell: self)
+        delegate?.changeEventType(currentCell: self)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

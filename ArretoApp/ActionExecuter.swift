@@ -11,6 +11,6 @@ import UIKit
 
 protocol ActionExecuter {
     
-    func changeEventStatus(currentCell: UITableViewCell)
-    func undoEventSTatus(currentCell: UITableViewCell)
+    func changeEventType(currentCell: UITableViewCell)
+    func undoEventType(currentCell: UITableViewCell)
 }
